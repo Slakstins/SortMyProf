@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
-import sodabase.ui.SodaByRestaurant;
+import sortProfessor.services.DatabaseConnectionService;
 
 public class SodasByRestaurantService {
 

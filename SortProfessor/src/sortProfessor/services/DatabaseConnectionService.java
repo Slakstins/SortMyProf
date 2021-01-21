@@ -1,4 +1,5 @@
-package sodabase.services;
+package sortProfessor.services;
+
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -33,7 +34,7 @@ public class DatabaseConnectionService {
 			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			
+			System.out.println("connection to database failed");
 			return false;
 		}
 	}

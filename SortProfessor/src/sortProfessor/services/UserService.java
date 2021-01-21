@@ -1,4 +1,4 @@
-package sodabase.services;
+package sortProfessor.services;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -17,8 +17,6 @@ import java.util.Random;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 import javax.swing.JOptionPane;
-
-import sodabase.ui.SodaByRestaurant;
 
 public class UserService {
 	private static final Random RANDOM = new SecureRandom();
