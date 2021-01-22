@@ -30,6 +30,7 @@ public class DatabaseConnectionService {
 				.replace("${user}", user)
 				.replace("${pass}", pass);
 		try {
+			System.out.println(fullUrl);
 			connection = DriverManager.getConnection(fullUrl);
 			return true;
 		} catch (SQLException e) {
