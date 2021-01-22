@@ -2,9 +2,12 @@ package userInterface;
 
 import javax.swing.JFrame;
 
+import sortProfessor.services.ServiceManager;
+
 public abstract class Page {
-	JFrame frame;
-	public Page(JFrame frame) {
+	protected JFrame frame;
+	
+	public Page(JFrame frame, ServiceManager serviceManager) {
 		this.frame = frame;
 	}
 	

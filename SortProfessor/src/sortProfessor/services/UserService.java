@@ -33,38 +33,39 @@ public class UserService {
 	}
 	
 	public boolean login(String username, String password) {
-		try {
-			
-			String query = "Select PasswordHash, PasswordSalt\n from [User]\n where [Username] = ?\n";
-			PreparedStatement stmt = this.dbService.getConnection().prepareStatement(query);
-			
-			if (username != null) {
-				stmt.setString(1, username);
-			}
-			ResultSet rs = stmt.executeQuery();
-
-			while(rs.next()) {
-				String saltString = rs.getString("passwordSalt");
-				
-				String hash = hashPassword(getBytesFromString(saltString), password);
-				
-				if (hash.equals(rs.getString("PasswordHash")))
-					return true;
-				return false;
-				
-			}
-			
-
-			
-
-			
-	}
-	catch (SQLException ex) {
-		ex.printStackTrace();
+//		try {
+//			
+//			//String query = "Select PasswordHash, PasswordSalt\n from [User]\n where [Username] = ?\n";
+//			//PreparedStatement stmt = this.dbService.getConnection().prepareStatement(query);
+//			
+//			if (username != null) {
+//				stmt.setString(1, username);
+//			}
+//			ResultSet rs = stmt.executeQuery();
+//
+//			while(rs.next()) {
+//				String saltString = rs.getString("passwordSalt");
+//				
+//				String hash = hashPassword(getBytesFromString(saltString), password);
+//				
+//				if (hash.equals(rs.getString("PasswordHash")))
+//					return true;
+//				return false;
+//				
+//			}
+//			
+//
+//			
+//
+//			
+//	}
+//	catch (SQLException ex) {
+//		ex.printStackTrace();
+//		return false;
+//	}
+//		return false;
 		return false;
 	}
-		return false;
-}
 
 	public boolean register(String username, String password) {
 		//TODO: Task 6
@@ -76,17 +77,20 @@ public class UserService {
 		CallableStatement stmt = null;
 
 		try {
-			stmt = connection.prepareCall("{? = call Register(?, ?, ?)}");
+			stmt = connection.prepareCall("{? = call AddStudent(?, ?, ?, ?, ?)}");
 			
 			stmt.registerOutParameter(1, Types.INTEGER);
-			stmt.setString(2, username);
-			stmt.setString(3, getStringFromBytes(salt));
-			stmt.setString(4, hashed);
+			stmt.setString(2, "Harry");
+			
+			stmt.setString(3, "Potter");
+			stmt.setString(4, username);
+			stmt.setString(5, getStringFromBytes(salt));
+			stmt.setString(6, hashed);
 			stmt.execute();
 			int returnCode = stmt.getInt(1);
 
 		    if (returnCode != 0) {
-		    	System.out.println("Registration Failed");
+		    	System.out.println("Registration SQL error code is " + returnCode);
 		    	return false;
 		    }
 			
@@ -94,6 +98,7 @@ public class UserService {
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
+			e.printStackTrace();
 			return false;
 		}
 		

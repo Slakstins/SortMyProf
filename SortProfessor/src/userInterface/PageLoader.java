@@ -13,15 +13,25 @@ public class PageLoader {
 	
 	public PageLoader(ServiceManager serviceManager) {
 		this.serviceManager = serviceManager;
-		frame = new JFrame();
-		initializePages(frame);
+		frame = new JFrame("Sort My Professor");
+		frame.addWindowListener(new java.awt.event.WindowAdapter() {
+			@Override
+			public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+				serviceManager.closeDatabaseConnection();
+				System.exit(0);
+			}
+			
+			
+			
+		});
+		initializePages(frame, serviceManager);
 
 		
 	}
 	//add pages here
-	private void initializePages(JFrame frame) {
-		loginPage = new LoginPage(frame);
-		homePage = new HomePage(frame);
+	private void initializePages(JFrame frame, ServiceManager serviceManager) {
+		loginPage = new LoginPage(frame, serviceManager);
+		homePage = new HomePage(frame, serviceManager);
 	}
 	//add methods for controlling pages
 	
@@ -31,6 +41,14 @@ public class PageLoader {
 	}
 	
 	public void closeHomePage() {
+		homePage.close();
+	}
+	
+	public void openLoginPage() {
+		loginPage.open();
+	}
+	
+	public void closeLoginPage() {
 		loginPage.close();
 	}
 	

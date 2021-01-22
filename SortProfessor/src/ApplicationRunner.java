@@ -12,7 +12,7 @@ public class ApplicationRunner {
 	private String serverName = "titan.csse.rose-hulman.edu";
 	private String databaseName = "SortProfessor30";
 	private String serverUsername = "SortProfessorUser30";
-	private String serverPassword = "Password123";	
+	private String serverPassword = "Password1234";	
 	public ApplicationRunner() {
 	
 	}
@@ -26,7 +26,7 @@ public class ApplicationRunner {
 		PageLoader pageLoader = new PageLoader(serviceManager);
 		
 		
-		pageLoader.openHomePage();
+		pageLoader.openLoginPage();
 		
 		
 		

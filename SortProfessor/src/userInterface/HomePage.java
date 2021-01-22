@@ -2,16 +2,14 @@ package userInterface;
 
 import javax.swing.JFrame;
 
+import sortProfessor.services.ServiceManager;
+
 public class HomePage extends Page {
 	
-	public HomePage(JFrame frame) {
-		super(frame);
-	}
 
-	
-	public void open() {
-		// TODO Auto-generated method stub
-		System.out.println("opened home page!");
+	public HomePage(JFrame frame, ServiceManager serviceManager) {
+		super(frame, serviceManager);
+		// TODO Auto-generated constructor stub
 	}
 
 	public void close() {
@@ -19,6 +17,10 @@ public class HomePage extends Page {
 		
 	}
 
-
+	@Override
+	public void open() {
+		// TODO Auto-generated method stub
+		
+	}
 
 }
