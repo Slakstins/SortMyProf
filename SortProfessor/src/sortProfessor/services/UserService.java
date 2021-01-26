@@ -31,26 +31,26 @@ public class UserService {
 	public boolean useApplicationLogins() {
 		return true;
 	}
-	
+	//IMPLEMENT WHEN  LOGIN PROCEDURE IS READY
 	public boolean login(String username, String password) {
 //		try {
 //			
-//			//String query = "Select PasswordHash, PasswordSalt\n from [User]\n where [Username] = ?\n";
-//			//PreparedStatement stmt = this.dbService.getConnection().prepareStatement(query);
-//			
-//			if (username != null) {
-//				stmt.setString(1, username);
-//			}
-//			ResultSet rs = stmt.executeQuery();
-//
-//			while(rs.next()) {
-//				String saltString = rs.getString("passwordSalt");
-//				
-//				String hash = hashPassword(getBytesFromString(saltString), password);
-//				
-//				if (hash.equals(rs.getString("PasswordHash")))
-//					return true;
-//				return false;
+////			String query = "Select PasswordHash, PasswordSalt\n from [User]\n where [Username] = ?\n";
+////			PreparedStatement stmt = this.dbService.getConnection().prepareStatement(query);
+////			
+////			if (username != null) {
+////				stmt.setString(1, username);
+////			}
+////			ResultSet rs = stmt.executeQuery();
+////
+////			while(rs.next()) {
+////				String saltString = rs.getString("passwordSalt");
+////				
+////				String hash = hashPassword(getBytesFromString(saltString), password);
+////				
+////				if (hash.equals(rs.getString("PasswordHash")))
+////					return true;
+////				return false;
 //				
 //			}
 //			
@@ -63,7 +63,6 @@ public class UserService {
 //		ex.printStackTrace();
 //		return false;
 //	}
-//		return false;
 		return false;
 	}
 

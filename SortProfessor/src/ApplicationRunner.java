@@ -9,6 +9,7 @@ import sortProfessor.services.ServiceManager;
 import userInterface.PageLoader;
 
 public class ApplicationRunner {
+	//make these READ FROM A FILE
 	private String serverName = "titan.csse.rose-hulman.edu";
 	private String databaseName = "SortProfessor30";
 	private String serverUsername = "SortProfessorUser30";
@@ -23,6 +24,7 @@ public class ApplicationRunner {
 		dbConnectionService.connect(serverUsername, serverPassword);
 		
 		ServiceManager serviceManager = new ServiceManager(dbConnectionService);
+		serviceManager.addProfessor("Sriram", "Mohan");
 		PageLoader pageLoader = new PageLoader(serviceManager);
 		
 		

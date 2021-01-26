@@ -7,8 +7,8 @@ import sortProfessor.services.ServiceManager;
 public class HomePage extends Page {
 	
 
-	public HomePage(JFrame frame, ServiceManager serviceManager) {
-		super(frame, serviceManager);
+	public HomePage(JFrame frame, ServiceManager serviceManager, PageLoader pageLoader) {
+		super(frame, serviceManager, pageLoader);
 		// TODO Auto-generated constructor stub
 	}
 
