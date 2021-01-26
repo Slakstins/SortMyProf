@@ -25,18 +25,24 @@ public abstract class DBService {
 	 * code: returned by stmt.getInt(1)
 	 */
 	public abstract void handleErrorCode(int code);
+	public abstract void displaySuccess();
 	
 	/*
 	 * execute the statement and handle the error
+	 * OVERRIDE THIS FOR THOSE THAT RETURN TABLES
 	 */
-	public void finalizeStmt(CallableStatement stmt) {
+	public void finalizeAddStmt(CallableStatement stmt) {
 		try {
 			stmt.execute();
 			int code = stmt.getInt(1);
 			if (code != 0) {
 				System.out.println("Nonzero SQL return code");
 				handleErrorCode(code);
+			} else {
+				displaySuccess();
 			}
+			
+			
 				
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

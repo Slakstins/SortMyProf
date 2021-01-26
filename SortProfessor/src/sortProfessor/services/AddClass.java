@@ -4,23 +4,21 @@ import java.sql.CallableStatement;
 import java.sql.SQLException;
 import java.sql.Types;
 
-public class AddProfessor extends DBService{
+public class AddClass extends DBService{
 	private CallableStatement stmt = null;
-	private String queryProc = "{? = call AddProfessor(?, ?)}";
+	private String queryProc = "{? = call AddClass(?)}";
 	
-	public AddProfessor(DatabaseConnectionService dbcs){
+	public AddClass(DatabaseConnectionService dbcs){
 		super(dbcs);
 		stmt = super.generateCallableStatement(queryProc);
 	}
 	
-	public void addProfessor(String firstName, String lastName){
+	public void addClass(String className){
 		try {
 			stmt.registerOutParameter(1, Types.INTEGER);
-			stmt.setString(2, firstName);
-			stmt.setString(3, lastName);
+			stmt.setString(2, className);
 			super.finalizeAddStmt(stmt);
 	
-			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -33,16 +31,12 @@ public class AddProfessor extends DBService{
 		case 1:
 			System.out.println("Whoops");
 			break;
-			
 		}
-		
 	}
 
 	@Override
 	public void displaySuccess() {
 		// TODO Auto-generated method stub
-		System.out.println("Professor Added");
-		
+		System.out.println("Class Added");
 	}
-
 }

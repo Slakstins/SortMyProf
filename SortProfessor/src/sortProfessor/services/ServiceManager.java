@@ -3,8 +3,9 @@ package sortProfessor.services;
 public class ServiceManager {
 	DatabaseConnectionService dbcs = null;
 	//add services here
-	private AddProfessor addProfessor;
 	private UserService userService;
+	private AddProfessor addProfessor;
+	private AddClass addClass;
 	
 	public ServiceManager(DatabaseConnectionService dbcs) {
 		this.dbcs = dbcs;
@@ -17,10 +18,18 @@ public class ServiceManager {
 	private void initializeServices() {
 		addProfessor = new AddProfessor(dbcs);
 		userService = new UserService(dbcs);
+		addClass = new AddClass(dbcs);
 		
 	}
 	
+	
+	
 	//add services here
+
+    public void addClass(String className) {
+    	addClass.addClass(className);
+    }
+    
     public void addProfessor(String fname, String lname) {
     	addProfessor.addProfessor(fname, lname);
     }

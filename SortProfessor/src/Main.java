@@ -10,4 +10,4 @@ public class Main {
 }
 
 
-//Grant Execute on [name of procedure] to [username]
+//Grant Execute on [procname] to SortProfessorUser30
