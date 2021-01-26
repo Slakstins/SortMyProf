@@ -23,6 +23,7 @@ public class UserService {
 	private static final Base64.Encoder enc = Base64.getEncoder();
 	private static final Base64.Decoder dec = Base64.getDecoder();
 	private DatabaseConnectionService dbService = null;
+	private String loginQueryProc = "{? = call GetPasswordsForUsername(?)}";
 
 	public UserService(DatabaseConnectionService dbService) {
 		this.dbService = dbService;
@@ -33,37 +34,36 @@ public class UserService {
 	}
 	//IMPLEMENT WHEN  LOGIN PROCEDURE IS READY
 	public boolean login(String username, String password) {
-//		try {
-//			
-////			String query = "Select PasswordHash, PasswordSalt\n from [User]\n where [Username] = ?\n";
-////			PreparedStatement stmt = this.dbService.getConnection().prepareStatement(query);
-////			
-////			if (username != null) {
-////				stmt.setString(1, username);
-////			}
-////			ResultSet rs = stmt.executeQuery();
-////
-////			while(rs.next()) {
-////				String saltString = rs.getString("passwordSalt");
-////				
-////				String hash = hashPassword(getBytesFromString(saltString), password);
-////				
-////				if (hash.equals(rs.getString("PasswordHash")))
-////					return true;
-////				return false;
-//				
-//			}
-//			
-//
-//			
-//
-//			
-//	}
-//	catch (SQLException ex) {
-//		ex.printStackTrace();
-//		return false;
-//	}
+		int code = 0;
+		CallableStatement stmt = null;
+		try {
+			
+			stmt = this.dbService.getConnection().prepareCall(loginQueryProc);
+
+			stmt.registerOutParameter(1, Types.INTEGER);
+			stmt.setString(2, username);
+			ResultSet rs = stmt.executeQuery();
+
+			while(rs.next()) {
+				String saltString = rs.getString("passwordSalt");
+				
+				String hash = hashPassword(getBytesFromString(saltString), password);
+				
+				if (hash.equals(rs.getString("PasswordHash"))) {
+					System.out.println("login successful");
+					return true;
+				}
+				
+			}
+				code = stmt.getInt(1);
+				System.out.println(code);
+			}
+		catch (SQLException ex) {
+			System.out.println("login failed");
+			return false;
+			}
 		return false;
+
 	}
 
 	public boolean register(String username, String password) {
