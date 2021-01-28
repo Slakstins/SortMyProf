@@ -13,17 +13,18 @@ public class AddProfessor extends DBService{
 		stmt = super.generateCallableStatement(queryProc);
 	}
 	
-	public void addProfessor(String firstName, String lastName){
+	public boolean addProfessor(String firstName, String lastName){
 		try {
 			stmt.registerOutParameter(1, Types.INTEGER);
 			stmt.setString(2, firstName);
 			stmt.setString(3, lastName);
-			super.finalizeAddStmt(stmt);
+			return super.finalizeAddStmt(stmt);
 	
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return false;
 		}
 	}
 

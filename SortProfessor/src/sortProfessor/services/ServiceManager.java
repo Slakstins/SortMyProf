@@ -26,12 +26,12 @@ public class ServiceManager {
 	
 	//add services here
 
-    public void addClass(String className) {
-    	addClass.addClass(className);
+    public boolean addClass(String className) {
+    	return addClass.addClass(className);
     }
     
-    public void addProfessor(String fname, String lname) {
-    	addProfessor.addProfessor(fname, lname);
+    public boolean addProfessor(String fname, String lname) {
+    	return addProfessor.addProfessor(fname, lname);
     }
     
     public boolean login(String username, String password) {

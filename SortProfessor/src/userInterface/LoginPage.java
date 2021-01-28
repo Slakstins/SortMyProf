@@ -68,8 +68,6 @@ public class LoginPage extends Page {
         });
         
 		CoolPanel loginPanel = new CoolPanel();
-		loginPanel.setLayout(null);
-
 
         // Text Area at the Center
         loginPanel.add(tfUsername);

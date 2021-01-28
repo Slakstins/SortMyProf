@@ -56,17 +56,11 @@ public class PageLoader {
 		homePage.open();
 	}
 	
-	public void closeHomePage() {
-		homePage.close();
-	}
 	
 	public void openLoginPage() {
 		loginPage.open();
 	}
 	
-	public void closeLoginPage() {
-		loginPage.close();
-	}
 	
 
 	

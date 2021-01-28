@@ -16,9 +16,5 @@ public abstract class Page {
 	}
 	
 	public abstract void open();
-	public abstract void close();
-
-
-	
 
 }

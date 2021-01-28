@@ -31,15 +31,17 @@ public abstract class DBService {
 	 * execute the statement and handle the error
 	 * OVERRIDE THIS FOR THOSE THAT RETURN TABLES
 	 */
-	public void finalizeAddStmt(CallableStatement stmt) {
+	public boolean finalizeAddStmt(CallableStatement stmt) {
 		try {
 			stmt.execute();
 			int code = stmt.getInt(1);
 			if (code != 0) {
 				System.out.println("Nonzero SQL return code");
 				handleErrorCode(code);
+				return false;
 			} else {
 				displaySuccess();
+				return true;
 			}
 			
 			
@@ -48,6 +50,7 @@ public abstract class DBService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return false;
 	}
 	
 

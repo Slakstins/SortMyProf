@@ -13,15 +13,15 @@ public class AddClass extends DBService{
 		stmt = super.generateCallableStatement(queryProc);
 	}
 	
-	public void addClass(String className){
+	public boolean addClass(String className){
 		try {
 			stmt.registerOutParameter(1, Types.INTEGER);
 			stmt.setString(2, className);
-			super.finalizeAddStmt(stmt);
+			return super.finalizeAddStmt(stmt);
 	
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			return false;
 		}
 	}
 
