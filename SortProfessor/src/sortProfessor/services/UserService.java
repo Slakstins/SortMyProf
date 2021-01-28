@@ -32,7 +32,7 @@ public class UserService {
 	public boolean useApplicationLogins() {
 		return true;
 	}
-	//IMPLEMENT WHEN  LOGIN PROCEDURE IS READY
+
 	public boolean login(String username, String password) {
 		int code = 0;
 		CallableStatement stmt = null;

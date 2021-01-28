@@ -4,7 +4,7 @@ import java.sql.CallableStatement;
 import java.sql.SQLException;
 import java.sql.Types;
 
-public class AddProfessor extends DBService{
+public class AddProfessor extends DBAddService{
 	private CallableStatement stmt = null;
 	private String queryProc = "{? = call AddProfessor(?, ?)}";
 	

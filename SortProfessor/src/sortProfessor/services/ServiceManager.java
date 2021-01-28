@@ -1,5 +1,9 @@
 package sortProfessor.services;
 
+import java.util.ArrayList;
+
+import pull.services.PullProfessors;
+
 public class ServiceManager {
 	DatabaseConnectionService dbcs = null;
 	//add services here
@@ -7,6 +11,7 @@ public class ServiceManager {
 	private AddProfessor addProfessor;
 	private AddClass addClass;
 	private AddSchool addSchool;
+	private PullProfessors pullProfessors;
 	
 	public ServiceManager(DatabaseConnectionService dbcs) {
 		this.dbcs = dbcs;
@@ -21,6 +26,9 @@ public class ServiceManager {
 		userService = new UserService(dbcs);
 		addClass = new AddClass(dbcs);
 		addSchool = new AddSchool(dbcs);
+		
+		
+		pullProfessors = new PullProfessors(dbcs);
 		
 	}
 	
@@ -39,6 +47,10 @@ public class ServiceManager {
     
     public boolean addProfessor(String fname, String lname) {
     	return addProfessor.addProfessor(fname, lname);
+    }
+    
+    public ArrayList<ArrayList<String>> pullProfessors(String fname, String lname) {
+    	return pullProfessors.pullProfessors(fname, lname);
     }
     
     public boolean login(String username, String password) {

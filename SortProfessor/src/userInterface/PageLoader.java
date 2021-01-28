@@ -1,9 +1,12 @@
 package userInterface;
 
 import java.awt.CardLayout;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 
 import sortProfessor.services.ServiceManager;
 
@@ -42,6 +45,34 @@ public class PageLoader {
 		
 	}
 	
+	/*
+	 * used by pages to add tables of queried data
+	 */
+	public void addTable(ArrayList<ArrayList<String>> contents, CoolPanel panel, int x, int y) {
+		ArrayList<String> columnNames = new ArrayList<String>();
+		for (int i = 0; i < contents.size(); i++) {
+			//get the column name and remove it from the list
+			ArrayList<String> curRow = contents.get(i);
+			columnNames.add(curRow.get(0));
+			//convert the row to a normal array and add it to data
+			curRow.remove(0);
+
+			
+		}
+		JTable table = new JTable();
+		TableModel tableModel = new TableModel(contents, columnNames);
+		table.setModel(tableModel);
+
+
+
+		JScrollPane scrollPane = new JScrollPane(table);
+		scrollPane.setBounds(x, y, 300, 600);
+		table.setFillsViewportHeight(true);
+		panel.add(scrollPane);
+		panel.revalidate();
+
+		
+	} 
 	
 	
 	//add pages here
