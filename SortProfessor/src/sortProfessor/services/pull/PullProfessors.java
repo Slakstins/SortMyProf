@@ -1,4 +1,4 @@
-package pull.services;
+package sortProfessor.services.pull;
 
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.sql.Types;
 import java.util.ArrayList;
 
-import sortProfessor.services.DBService;
 import sortProfessor.services.DatabaseConnectionService;
 
 public class PullProfessors extends DBPullService {

@@ -1,13 +1,15 @@
-package userInterface;
+package userInterface.JCool;
 
-import java.awt.Label;
+import java.awt.Button;
 
-public class CoolLabel extends Label {
+
+
+public class CoolButton extends Button {
 	private int x;
 	private int y;
 	private int width = 100;
 	private int height = 20;
-	CoolLabel(String title, int x, int y){
+	public CoolButton(String title, int x, int y){
 		super(title);
 		this.x = x;
 		this.y = y;

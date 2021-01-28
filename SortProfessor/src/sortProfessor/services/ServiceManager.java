@@ -2,7 +2,10 @@ package sortProfessor.services;
 
 import java.util.ArrayList;
 
-import pull.services.PullProfessors;
+import sortProfessor.services.Add.AddClass;
+import sortProfessor.services.Add.AddProfessor;
+import sortProfessor.services.Add.AddSchool;
+import sortProfessor.services.pull.PullProfessors;
 
 public class ServiceManager {
 	DatabaseConnectionService dbcs = null;

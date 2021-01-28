@@ -1,6 +1,8 @@
-package userInterface;
+package userInterface.JCool;
 
 import java.awt.Panel;
+
+import userInterface.PageLoader;
 
 public class CoolPanel extends Panel {
 	public CoolPanel() {

@@ -14,6 +14,10 @@ import javax.swing.JTable;
 import javax.swing.table.TableColumn;
 
 import sortProfessor.services.ServiceManager;
+import userInterface.JCool.CoolButton;
+import userInterface.JCool.CoolLabel;
+import userInterface.JCool.CoolPanel;
+import userInterface.JCool.CoolTextField;
 
 public class HomePage extends Page {
 	private JPanel cards;

@@ -1,29 +1,30 @@
-package sortProfessor.services;
+package sortProfessor.services.Add;
 
 import java.sql.CallableStatement;
 import java.sql.SQLException;
 import java.sql.Types;
 
-public class AddProfessor extends DBAddService{
+import sortProfessor.services.DatabaseConnectionService;
+
+
+
+//NOTE: this will have to be added at the same time as a professor
+public class AddClass extends DBAddService{
 	private CallableStatement stmt = null;
-	private String queryProc = "{? = call AddProfessor(?, ?)}";
+	private String queryProc = "{? = call AddClass(?)}";
 	
-	public AddProfessor(DatabaseConnectionService dbcs){
+	public AddClass(DatabaseConnectionService dbcs){
 		super(dbcs);
 		stmt = super.generateCallableStatement(queryProc);
 	}
 	
-	public boolean addProfessor(String firstName, String lastName){
+	public boolean addClass(String className){
 		try {
 			stmt.registerOutParameter(1, Types.INTEGER);
-			stmt.setString(2, firstName);
-			stmt.setString(3, lastName);
+			stmt.setString(2, className);
 			return super.finalizeAddStmt(stmt);
-	
-			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
 			return false;
 		}
 	}
@@ -34,16 +35,12 @@ public class AddProfessor extends DBAddService{
 		case 1:
 			System.out.println("Whoops");
 			break;
-			
 		}
-		
 	}
 
 	@Override
 	public void displaySuccess() {
 		// TODO Auto-generated method stub
-		System.out.println("Professor Added");
-		
+		System.out.println("Class Added");
 	}
-
 }

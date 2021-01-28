@@ -1,16 +1,15 @@
-package userInterface;
+package userInterface.JCool;
 
-import java.awt.Button;
+import java.awt.TextField;
 
-
-
-public class CoolButton extends Button {
+public class CoolTextField extends TextField {
 	private int x;
 	private int y;
-	private int width = 100;
+	private int width = 200;
 	private int height = 20;
-	CoolButton(String title, int x, int y){
-		super(title);
+	private static int characters = 60;
+	public CoolTextField(String title, int x, int y){
+		super(title, characters);
 		this.x = x;
 		this.y = y;
 	    this.setBounds(x, y, width, height);
@@ -22,3 +21,5 @@ public class CoolButton extends Button {
 	}
 
 }
+
+

@@ -9,6 +9,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 import sortProfessor.services.ServiceManager;
+import userInterface.JCool.CoolPanel;
 
 public class PageLoader {
 	//add pages here
@@ -17,8 +18,8 @@ public class PageLoader {
 	private Page homePage;
 	private ServiceManager serviceManager;
 	private JPanel cards;
-	static int frameWidth = 1080;
-	static int frameHeight = 720;
+	public static int frameWidth = 1080;
+	public static int frameHeight = 720;
 	
 	public PageLoader(ServiceManager serviceManager) {
 		this.serviceManager = serviceManager;

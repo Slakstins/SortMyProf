@@ -1,7 +1,10 @@
-package sortProfessor.services;
+package sortProfessor.services.Add;
 
 import java.sql.CallableStatement;
 import java.sql.SQLException;
+
+import sortProfessor.services.DBService;
+import sortProfessor.services.DatabaseConnectionService;
 
 public abstract class DBAddService extends DBService{
 	

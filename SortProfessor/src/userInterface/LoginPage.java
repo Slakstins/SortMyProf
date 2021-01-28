@@ -17,6 +17,10 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import sortProfessor.services.ServiceManager;
+import userInterface.JCool.CoolButton;
+import userInterface.JCool.CoolLabel;
+import userInterface.JCool.CoolPanel;
+import userInterface.JCool.CoolTextField;
 
 public class LoginPage extends Page {
 	
