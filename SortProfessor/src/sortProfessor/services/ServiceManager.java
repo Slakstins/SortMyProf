@@ -6,6 +6,7 @@ public class ServiceManager {
 	private UserService userService;
 	private AddProfessor addProfessor;
 	private AddClass addClass;
+	private AddSchool addSchool;
 	
 	public ServiceManager(DatabaseConnectionService dbcs) {
 		this.dbcs = dbcs;
@@ -19,12 +20,18 @@ public class ServiceManager {
 		addProfessor = new AddProfessor(dbcs);
 		userService = new UserService(dbcs);
 		addClass = new AddClass(dbcs);
+		addSchool = new AddSchool(dbcs);
 		
 	}
 	
 	
 	
 	//add services here
+
+    public boolean addSchool(String schoolName) {
+    	return addClass.addClass(schoolName);
+    }
+    
 
     public boolean addClass(String className) {
     	return addClass.addClass(className);
