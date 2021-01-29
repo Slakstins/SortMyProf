@@ -52,21 +52,15 @@ public class LoginPage extends Page {
 				}
 			}
         });
-        
+
         CoolButton registerButton = new CoolButton("Register", 300, 200);
 
         registerButton.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (serviceManager.register(tfUsername.getText(), tfPassword.getText())) {
-					System.out.println("registered in as " + tfUsername.getText());
-					// TAKE THE USER TO A PAGE TO FILL OUT MORE REGISTRATION INFO
-					pageLoader.openHomePage();
-				}
-				else {
-					System.out.println("Registration failed");
-				}
+				Page registerPage = new RegisterPage(frame, serviceManager, pageLoader, cards, tfUsername.getText(), tfPassword.getText());
+				registerPage.open();
 			}
         	
         });

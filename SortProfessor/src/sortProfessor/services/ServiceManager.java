@@ -60,8 +60,8 @@ public class ServiceManager {
     	return userService.login(username, password);
     }
     
-    public boolean register(String username, String password) {
-    	return userService.register(username, password);
+    public boolean register(String username, String password, String firstName, String lastName) {
+    	return userService.register(username, password, firstName, lastName);
     }
     
     /*

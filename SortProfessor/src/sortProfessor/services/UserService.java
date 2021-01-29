@@ -66,7 +66,7 @@ public class UserService {
 
 	}
 
-	public boolean register(String username, String password) {
+	public boolean register(String username, String password, String firstName, String lastName) {
 		//TODO: Task 6
 		byte[] salt = getNewSalt();
 		String hashed = hashPassword(salt, password);
@@ -79,9 +79,9 @@ public class UserService {
 			stmt = connection.prepareCall("{? = call AddStudent(?, ?, ?, ?, ?)}");
 			
 			stmt.registerOutParameter(1, Types.INTEGER);
-			stmt.setString(2, "Harry");
+			stmt.setString(2, firstName);
 			
-			stmt.setString(3, "Potter");
+			stmt.setString(3, lastName);
 			stmt.setString(4, username);
 			stmt.setString(5, getStringFromBytes(salt));
 			stmt.setString(6, hashed);
