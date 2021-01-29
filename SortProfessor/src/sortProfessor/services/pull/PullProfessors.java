@@ -82,14 +82,16 @@ public class PullProfessors extends DBPullService {
 	public void handleErrorCode(int code) {
 		switch(code) {
 		case 1:
-			System.out.println("Whoops");
+			System.out.println("Professor first name cannot be null or empty.");
+			break;
+		case 2:
+			System.out.println("Professor last name cannot be null or empty.");
 			break;
 		}
 	}
 
 	@Override
 	public void displaySuccess() {
-		// TODO Auto-generated method stub
 		System.out.println("Professors pulled");
 	}
 }

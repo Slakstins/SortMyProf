@@ -35,7 +35,10 @@ public class AddClass extends DBAddService{
 	public void handleErrorCode(int code) {
 		switch(code) {
 		case 1:
-			System.out.println("Whoops");
+			System.out.println("Class name cannot be null or empty.");
+			break;
+		case 2:
+			System.out.println("Invalid ProfessorID.");
 			break;
 		}
 	}
