@@ -13,6 +13,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -36,14 +37,19 @@ public class LoginPage extends Page {
         CoolLabel labelPassword = new CoolLabel("Password", 100, 150);
         
         CoolTextField tfUsername = new CoolTextField(null, 200, 100); 
-        CoolTextField tfPassword = new CoolTextField(null, 200, 150);
+        JPasswordField tfPassword = new JPasswordField();
+        tfPassword.setBounds(200, 150, 200, 20);
 
         CoolButton loginButton = new CoolButton("Login", 200, 200);
 
         loginButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (serviceManager.login(tfUsername.getText(), tfPassword.getText())) {
+				char[] passwordArray = tfPassword.getPassword();
+				String passwordString = new String(passwordArray);
+
+
+				if (serviceManager.login(tfUsername.getText(), passwordString)) {
 					System.out.println("logged in as " + tfUsername.getText());
 					pageLoader.openHomePage();
 				}

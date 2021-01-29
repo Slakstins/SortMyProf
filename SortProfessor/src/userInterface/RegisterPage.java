@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 
 import sortProfessor.services.ServiceManager;
 import userInterface.JCool.CoolButton;
@@ -25,7 +26,8 @@ public class RegisterPage extends Page {
         CoolLabel labelPassword = new CoolLabel("Password", 100, 150);
         
         CoolTextField tfUsername = new CoolTextField(username, 200, 100); 
-        CoolTextField tfPassword = new CoolTextField(password, 200, 150);
+        JPasswordField tfPassword = new JPasswordField(password);
+        tfPassword.setBounds(200, 150, 200, 20);
 
         CoolLabel labelFName = new CoolLabel("FName", 100, 225);
         CoolLabel labelLName = new CoolLabel("LName", 100, 275);
@@ -39,7 +41,9 @@ public class RegisterPage extends Page {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (serviceManager.register(tfUsername.getText(), tfPassword.getText(), tfFName.getText(), tfLName.getText())) {
+				char[] passwordArray = tfPassword.getPassword();
+				String passwordString = new String(passwordArray);
+				if (serviceManager.register(tfUsername.getText(), passwordString, tfFName.getText(), tfLName.getText())) {
 					System.out.println("registered " + tfFName.getText() + " " + tfLName.getText() + " as "+ tfUsername.getText());
 					// TAKE THE USER TO A PAGE TO FILL OUT MORE REGISTRATION INFO
 					pageLoader.openHomePage();

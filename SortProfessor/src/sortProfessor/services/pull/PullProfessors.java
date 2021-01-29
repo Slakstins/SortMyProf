@@ -52,7 +52,6 @@ public class PullProfessors extends DBPullService {
 				FNames.add(FName);
 				LNames.add(LName);
 				schoolNames.add(schoolName);
-				
 				System.out.println(schoolName);
 				}
 		
