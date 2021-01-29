@@ -11,7 +11,10 @@ import sortProfessor.services.DatabaseConnectionService;
 public class PullProfessors extends DBPullService {
 	private CallableStatement stmt = null;
 	private String queryProc = "{? = call PullProfessors(?, ?)}";
-	
+	private String column1Name = "ID";
+	private String column2Name = "FirstName";
+	private String column3Name = "LastName";	
+	private String column4Name = "SchoolName";	
 
 	public PullProfessors(DatabaseConnectionService dbcs) {
 		super(dbcs);
@@ -24,15 +27,11 @@ public class PullProfessors extends DBPullService {
  * The first value in each inner array is the column name.
  */
 	public ArrayList<ArrayList<String>> pullProfessors(String profFName, String profLName){
-		String column1Name = "ID";
-		String column2Name = "FirstName";
-		String column3Name = "LastName";
+
 		ArrayList<String> ids = new ArrayList<String>();
 		ArrayList<String> FNames = new ArrayList<String>();
 		ArrayList<String> LNames = new ArrayList<String>();
-		ids.add(column1Name);
-		FNames.add(column2Name);
-		LNames.add(column3Name);
+		ArrayList<String> schoolNames = new ArrayList<String>();
 		stmt = generateCallableStatement(queryProc);
 		try {
 			stmt.registerOutParameter(1, Types.INTEGER);
@@ -47,16 +46,21 @@ public class PullProfessors extends DBPullService {
 				String id = rs.getString(column1Name);
 				String FName = rs.getString(column2Name);
 				String LName = rs.getString(column3Name);
+				String schoolName = rs.getString(column4Name);
 
 				ids.add(id);
 				FNames.add(FName);
 				LNames.add(LName);
+				schoolNames.add(schoolName);
+				
+				System.out.println(schoolName);
 				}
 		
 			ArrayList<ArrayList<String>> professors = new ArrayList<ArrayList<String>>();
 			professors.add(ids);
 			professors.add(FNames);
 			professors.add(LNames);
+			professors.add(schoolNames);
 			return professors;
 				
 	

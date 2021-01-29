@@ -40,16 +40,16 @@ public class ServiceManager {
 	//add services here
 
     public boolean addSchool(String schoolName) {
-    	return addClass.addClass(schoolName);
+    	return addSchool.addSchool(schoolName);
     }
     
 
-    public boolean addClass(String className) {
-    	return addClass.addClass(className);
+    public boolean addClass(String className, String profID) {
+    	return addClass.addClass(className, profID);
     }
     
-    public boolean addProfessor(String fname, String lname) {
-    	return addProfessor.addProfessor(fname, lname);
+    public boolean addProfessor(String fname, String lname, String schoolID) {
+    	return addProfessor.addProfessor(fname, lname, schoolID);
     }
     
     public ArrayList<ArrayList<String>> pullProfessors(String fname, String lname) {

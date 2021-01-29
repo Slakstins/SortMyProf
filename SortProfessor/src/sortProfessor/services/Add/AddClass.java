@@ -11,17 +11,19 @@ import sortProfessor.services.DatabaseConnectionService;
 //NOTE: this will have to be added at the same time as a professor
 public class AddClass extends DBAddService{
 	private CallableStatement stmt = null;
-	private String queryProc = "{? = call AddClass(?)}";
+	private String queryProc = "{? = call AddClass(?, ?)}";
 	
 	public AddClass(DatabaseConnectionService dbcs){
 		super(dbcs);
 		stmt = super.generateCallableStatement(queryProc);
 	}
 	
-	public boolean addClass(String className){
+	public boolean addClass(String className, String ID){
 		try {
 			stmt.registerOutParameter(1, Types.INTEGER);
 			stmt.setString(2, className);
+			stmt.setString(3, ID);
+
 			return super.finalizeAddStmt(stmt);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

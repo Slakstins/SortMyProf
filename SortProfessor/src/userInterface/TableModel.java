@@ -11,24 +11,47 @@ public class TableModel extends AbstractTableModel {
 	public TableModel(ArrayList<ArrayList<String>> data, ArrayList<String> headers) {
 		this.data = data;
 		this.headers = headers;
-		
+	
 	}
-
+	
+	@Override
+	public String getColumnName(int column) {
+	    return headers.get(column);
+	}
+	
+	
+	public void setData(ArrayList<ArrayList<String>> data){
+		this.data = data;
+		this.fireTableDataChanged();
+	}
+	
+	public void setHeaders(ArrayList<String> headers) {
+		this.headers = headers;
+		this.fireTableDataChanged();
+	}
 
 	@Override
 	public int getRowCount() {
-
-		
 		// TODO Auto-generated method stub
-		return data.get(0).size();
+		if (data.size() > 0) {
+     		return data.get(0).size();
+			
+		}
+		else {
+			return 0;
+		}
 	}
-
 
 	@Override
 	public int getColumnCount() {
 
 		// TODO Auto-generated method stub
 		return headers.size();
+	}
+	
+	public Object getValueAtByColumnString(int rowIndex, String columnHeader) {
+		return getValueAt(rowIndex, headers.indexOf(columnHeader));
+		
 	}
 
 	@Override

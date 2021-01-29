@@ -22,6 +22,7 @@ import userInterface.JCool.CoolTextField;
 public class HomePage extends Page {
 	private JPanel cards;
 	private JTabbedPane tabs;
+
 	
 
 	public HomePage(JFrame frame, ServiceManager serviceManager, PageLoader pageLoader, JPanel cards) {
@@ -43,20 +44,26 @@ public class HomePage extends Page {
 	
 	
 	private void createAddProfTab(){
-
 		
         CoolLabel labelFName = new CoolLabel("FirstName:", 100, 100);
         CoolLabel labelLName = new CoolLabel("LastName:", 100, 150);
+        CoolLabel schoolName = new CoolLabel("SchoolName:", 100, 200);
+
         
         CoolTextField tfProfFName = new CoolTextField(null, 200, 100); 
         CoolTextField tfProfLName = new CoolTextField(null, 200, 150);
+        CoolTextField tfSchoolName = new CoolTextField(null, 200, 200);
+        
 
         CoolButton addProfButton = new CoolButton("AddProf", 200, 300);
+        
+        CoolPanel panel = new CoolPanel();
+
 
         addProfButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (serviceManager.addProfessor(tfProfFName.getText(), tfProfLName.getText())) {
+				if (serviceManager.addProfessor(tfProfFName.getText(), tfProfLName.getText(), tfSchoolName.getText())) {
 					System.out.println("Added professor: " + tfProfFName.getText() + " " +
 				 tfProfLName.getText());
 				}
@@ -68,7 +75,8 @@ public class HomePage extends Page {
 		//Establish cool components and listeners
 		
 		//Add components to a Cool panel
-        CoolPanel panel = new CoolPanel();
+        panel.add(schoolName);
+        panel.add(tfSchoolName);
         panel.add(addProfButton); 
         panel.add(labelFName);
         panel.add(labelLName);
@@ -92,33 +100,39 @@ public class HomePage extends Page {
         CoolTextField tfClassName = new CoolTextField(null, 200, 100); 
         CoolButton addClassButton = new CoolButton("AddClass", 300, 300);
         
+        CoolButton searchProfsButton = new CoolButton("SearchProfs", 200, 300);
+        
         CoolLabel labelProfName = new CoolLabel("ProfName:", 100, 200);
         CoolTextField tfProfFname = new CoolTextField("FirstName", 200, 200);
         CoolTextField tfProfLname = new CoolTextField("LastName", 200, 250);
         CoolPanel panel = new CoolPanel();
         
-
-        addClassButton.addActionListener(new ActionListener() {
+        ArrayList<String> header = new ArrayList<String>();
+        
+        header.add("ID");
+        header.add("FirstName");
+        header.add("LastName");
+        header.add("SchoolName");
+        JTable table = pageLoader.addTable(header, panel, 500, 100);
+        
+        searchProfsButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				ArrayList<ArrayList<String>> results = serviceManager.pullProfessors(tfProfFname.getText(), tfProfLname.getText());
-				//If there are profs with this name found, then produce the table.
-				if (results.get(0).size() > 2) {
-					pageLoader.addTable(results, panel, 500, 100);
+				TableModel model =(TableModel) table.getModel();
+				model.setData(results);
+			}
+        });	
+        
+        addClassButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//this gets the ID for now. To not show the ID would be tricky
+				TableModel model = (TableModel)table.getModel();
+				String profIDString = (String) model.getValueAtByColumnString(table.getSelectedRow(), "ID");
 
-				}
-				//Only one prof with that name, so link them to the class
-				else if (results.get(0).size() == 2){
-					System.out.println("prof selected");
-				}
-				else {
-					
-					System.out.println("No profs with that name");
-				}
-				
-				
-				if (serviceManager.addClass(tfClassName.getText())){
-					System.out.println("Added Class: " + tfClassName.getText());
+				if (serviceManager.addClass(tfClassName.getText(), profIDString)){
+					System.out.println("Added Class: " + tfClassName.getText() + " for prof with ID: " + profIDString);
 				}
 				else {
 					System.out.println("failed to add class");
@@ -127,6 +141,7 @@ public class HomePage extends Page {
         });	
 		
 		//Add components to a Cool panel
+        panel.add(searchProfsButton);
         panel.add(labelProfName);
         panel.add(tfProfFname);
         panel.add(tfProfLname);
@@ -147,7 +162,7 @@ public class HomePage extends Page {
         addSchoolButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (serviceManager.addClass(tfSchoolName.getText())){
+				if (serviceManager.addSchool(tfSchoolName.getText())){
 					System.out.println("Added School: " + tfSchoolName.getText());
 				}
 				else {

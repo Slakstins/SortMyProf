@@ -8,24 +8,24 @@ import sortProfessor.services.DatabaseConnectionService;
 
 public class AddProfessor extends DBAddService{
 	private CallableStatement stmt = null;
-	private String queryProc = "{? = call AddProfessor(?, ?)}";
+	private String queryProc = "{? = call AddProfessor(?, ?, ?)}";
 	
 	public AddProfessor(DatabaseConnectionService dbcs){
 		super(dbcs);
 		stmt = super.generateCallableStatement(queryProc);
 	}
 	
-	public boolean addProfessor(String firstName, String lastName){
+	public boolean addProfessor(String firstName, String lastName, String schoolName){
 		try {
 			stmt.registerOutParameter(1, Types.INTEGER);
 			stmt.setString(2, firstName);
 			stmt.setString(3, lastName);
+			stmt.setString(4, schoolName);
 			return super.finalizeAddStmt(stmt);
 	
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+
 			return false;
 		}
 	}

@@ -48,29 +48,21 @@ public class PageLoader {
 	
 	/*
 	 * used by pages to add tables of queried data
+	 * Returns a reference to the new table
 	 */
-	public void addTable(ArrayList<ArrayList<String>> contents, CoolPanel panel, int x, int y) {
-		ArrayList<String> columnNames = new ArrayList<String>();
-		for (int i = 0; i < contents.size(); i++) {
-			//get the column name and remove it from the list
-			ArrayList<String> curRow = contents.get(i);
-			columnNames.add(curRow.get(0));
-			//convert the row to a normal array and add it to data
-			curRow.remove(0);
-
-			
-		}
+	public JTable addTable(ArrayList<String> headers, CoolPanel panel, int x, int y) {
+		
 		JTable table = new JTable();
-		TableModel tableModel = new TableModel(contents, columnNames);
+		TableModel tableModel = new TableModel(new ArrayList<ArrayList<String>>(), headers);
 		table.setModel(tableModel);
 
-
-
 		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setBounds(x, y, 300, 600);
-		table.setFillsViewportHeight(true);
+		scrollPane.setBounds(x, y, 300, 400);
 		panel.add(scrollPane);
 		panel.revalidate();
+		
+		return table;
+	
 
 		
 	} 
