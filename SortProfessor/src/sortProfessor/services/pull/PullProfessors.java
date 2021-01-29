@@ -14,7 +14,7 @@ public class PullProfessors extends DBPullService {
 	private String column1Name = "ID";
 	private String column2Name = "FirstName";
 	private String column3Name = "LastName";	
-	private String column4Name = "SchoolName";	
+	private String column4Name = "Name";	
 
 	public PullProfessors(DatabaseConnectionService dbcs) {
 		super(dbcs);
