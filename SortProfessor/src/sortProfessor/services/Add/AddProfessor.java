@@ -39,6 +39,8 @@ public class AddProfessor extends DBAddService{
 		case 2:
 			System.out.println("School name cannot be null or empty.");
 			break;
+		case 3:
+			System.out.println("School does not exist.");
 		}
 		
 	}
