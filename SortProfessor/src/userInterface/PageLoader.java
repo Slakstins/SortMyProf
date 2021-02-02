@@ -62,9 +62,6 @@ public class PageLoader {
 		panel.revalidate();
 		
 		return table;
-	
-
-		
 	} 
 	
 	

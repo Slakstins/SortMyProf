@@ -39,6 +39,7 @@ public class HomePage extends Page {
 		createAddProfTab();
 		createAddClassTab();
 		createAddSchoolTab();
+		createViewProfsTab();
 		
 	}
 	
@@ -113,6 +114,7 @@ public class HomePage extends Page {
         header.add("FirstName");
         header.add("LastName");
         header.add("SchoolName");
+        header.add("AvgRating");
         JTable table = pageLoader.addTable(header, panel, 500, 100);
         
         searchProfsButton.addActionListener(new ActionListener() {
@@ -152,6 +154,66 @@ public class HomePage extends Page {
         tabs.add(panel, "addClass");	
 	}
 	
+	
+	
+	private void createViewProfsTab(){
+		//Establish cool components and listeners
+        CoolButton searchProfsButton = new CoolButton("SearchProfs", 200, 300);
+        
+        CoolLabel labelProfName = new CoolLabel("ProfName:", 100, 200);
+        CoolTextField tfProfFname = new CoolTextField("FirstName", 200, 200);
+        CoolTextField tfProfLname = new CoolTextField("LastName", 200, 250);
+        CoolButton viewProfButton = new CoolButton("ViewProf", 300, 300);
+
+        CoolPanel panel = new CoolPanel();
+        
+        ArrayList<String> header = new ArrayList<String>();
+        
+        header.add("ID");
+        header.add("FirstName");
+        header.add("LastName");
+        header.add("SchoolName");
+        header.add("AvgRating");
+
+        JTable table = pageLoader.addTable(header, panel, 500, 100);
+        
+        
+        viewProfButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//this gets the ID for now. To not show the ID would be tricky
+				TableModel model = (TableModel)table.getModel();
+				String profIDString = (String) model.getValueAtByColumnString(table.getSelectedRow(), "ID");
+				
+				//Switch over to a page with advanced data for the prof
+
+				//if (serviceManager.addClass(tfClassName.getText(), profIDString)){
+					//System.out.println("Added Class: " + tfClassName.getText() + " for prof with ID: " + profIDString);
+//				}
+//				else {
+//					System.out.println("failed to add class");
+//				}
+			}
+        });	
+        
+        searchProfsButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ArrayList<ArrayList<String>> results = serviceManager.pullProfessors(tfProfFname.getText(), tfProfLname.getText());
+				TableModel model =(TableModel) table.getModel();
+				model.setData(results);
+			}
+        });	
+        
+		
+		//Add components to a Cool panel
+        panel.add(searchProfsButton);
+        panel.add(labelProfName);
+        panel.add(tfProfFname);
+        panel.add(tfProfLname);
+        //Add the panel to a new homePage tab
+        tabs.add(panel, "searchProfs");	
+	}
 	
 	private void createAddSchoolTab(){
 		//Establish cool components and listeners
