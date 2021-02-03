@@ -103,9 +103,11 @@ public class HomePage extends Page {
         
         CoolButton searchProfsButton = new CoolButton("SearchProfs", 200, 300);
         
-        CoolLabel labelProfName = new CoolLabel("ProfName:", 100, 200);
-        CoolTextField tfProfFname = new CoolTextField("FirstName", 200, 200);
-        CoolTextField tfProfLname = new CoolTextField("LastName", 200, 250);
+        CoolLabel labelProfName = new CoolLabel("ProfName:", 100, 160);
+        CoolLabel labelProfFName = new CoolLabel("FirstName:", 100, 200);
+        CoolLabel labelProfLName = new CoolLabel("LastName::", 100, 250);
+        CoolTextField tfProfFname = new CoolTextField(null, 200, 200);
+        CoolTextField tfProfLname = new CoolTextField(null, 200, 250);
         CoolPanel panel = new CoolPanel();
         
         ArrayList<String> header = new ArrayList<String>();
@@ -150,6 +152,8 @@ public class HomePage extends Page {
         panel.add(labelClassName);
         panel.add(tfClassName);
         panel.add(addClassButton);
+        panel.add(labelProfFName);
+        panel.add(labelProfLName);
         //Add the panel to a new homePage tab
         tabs.add(panel, "addClass");	
 	}
@@ -160,9 +164,13 @@ public class HomePage extends Page {
 		//Establish cool components and listeners
         CoolButton searchProfsButton = new CoolButton("SearchProfs", 200, 300);
         
-        CoolLabel labelProfName = new CoolLabel("ProfName:", 100, 200);
-        CoolTextField tfProfFname = new CoolTextField("FirstName", 200, 200);
-        CoolTextField tfProfLname = new CoolTextField("LastName", 200, 250);
+        
+        CoolLabel labelProfName = new CoolLabel("ProfName:", 100, 160);
+        CoolLabel labelProfFName = new CoolLabel("FirstName:", 100, 200);
+        CoolLabel labelProfLName = new CoolLabel("LastName:", 100, 250);
+        
+        CoolTextField tfProfFname = new CoolTextField(null, 200, 200);
+        CoolTextField tfProfLname = new CoolTextField(null, 200, 250);
         CoolButton viewProfButton = new CoolButton("ViewProf", 300, 300);
 
         CoolPanel panel = new CoolPanel();
@@ -204,6 +212,8 @@ public class HomePage extends Page {
 		//Add components to a Cool panel
         panel.add(searchProfsButton);
         panel.add(labelProfName);
+        panel.add(labelProfFName);
+        panel.add(labelProfLName);
         panel.add(tfProfFname);
         panel.add(tfProfLname);
         panel.add(viewProfButton);

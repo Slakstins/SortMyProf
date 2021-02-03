@@ -65,8 +65,9 @@ public class LoginPage extends Page {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
-				Page registerPage = new RegisterPage(frame, serviceManager, pageLoader, cards, tfUsername.getText(), tfPassword.getText());
+				char[] passwordArray = tfPassword.getPassword();
+				String passwordString = new String(passwordArray);
+				Page registerPage = new RegisterPage(frame, serviceManager, pageLoader, cards, tfUsername.getText(), passwordString);
 				registerPage.open();
 			}
         	
