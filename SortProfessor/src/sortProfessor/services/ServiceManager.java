@@ -6,6 +6,7 @@ import sortProfessor.services.Add.AddClass;
 import sortProfessor.services.Add.AddProfessor;
 import sortProfessor.services.Add.AddSchool;
 import sortProfessor.services.pull.PullProfessors;
+import sortProfessor.services.pull.PullQuestions;
 
 public class ServiceManager {
 	DatabaseConnectionService dbcs = null;
@@ -15,6 +16,7 @@ public class ServiceManager {
 	private AddClass addClass;
 	private AddSchool addSchool;
 	private PullProfessors pullProfessors;
+	private PullQuestions pullQuestions;
 	
 	public ServiceManager(DatabaseConnectionService dbcs) {
 		this.dbcs = dbcs;
@@ -32,6 +34,7 @@ public class ServiceManager {
 		
 		
 		pullProfessors = new PullProfessors(dbcs);
+		pullQuestions = new PullQuestions(dbcs);
 		
 	}
 	
@@ -64,6 +67,9 @@ public class ServiceManager {
     	return userService.register(username, password, firstName, lastName);
     }
     
+    public ArrayList<ArrayList<String>> pullQuestions() {
+    	return pullQuestions.pullQuestions();
+    }
     /*
      * called when the JFrame is closed
      */
