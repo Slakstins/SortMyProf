@@ -65,6 +65,7 @@ public class LoginPage extends Page {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+
 				Page registerPage = new RegisterPage(frame, serviceManager, pageLoader, cards, tfUsername.getText(), tfPassword.getText());
 				registerPage.open();
 			}
@@ -93,9 +94,6 @@ public class LoginPage extends Page {
 	public void open() {
 		CardLayout layoutCards = (CardLayout)(cards.getLayout());
 		layoutCards.show(cards, "LoginPage");
-
-
-
 	}
 
 	public void close() {

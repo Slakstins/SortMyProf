@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import sortProfessor.services.Add.AddClass;
 import sortProfessor.services.Add.AddProfessor;
 import sortProfessor.services.Add.AddSchool;
+import sortProfessor.services.pull.PullProfSurveys;
 import sortProfessor.services.pull.PullProfessors;
 
 public class ServiceManager {
@@ -15,6 +16,7 @@ public class ServiceManager {
 	private AddClass addClass;
 	private AddSchool addSchool;
 	private PullProfessors pullProfessors;
+	private PullProfSurveys pullProfSurveys;
 	
 	public ServiceManager(DatabaseConnectionService dbcs) {
 		this.dbcs = dbcs;
@@ -29,6 +31,7 @@ public class ServiceManager {
 		userService = new UserService(dbcs);
 		addClass = new AddClass(dbcs);
 		addSchool = new AddSchool(dbcs);
+		pullProfSurveys = new PullProfSurveys(dbcs);
 		
 		
 		pullProfessors = new PullProfessors(dbcs);
@@ -38,6 +41,9 @@ public class ServiceManager {
 	
 	
 	//add services here
+	public ArrayList<ArrayList<String>> pullProfSurveys(String profID) {
+		return pullProfSurveys.pullProfSurveys(profID);
+	}
 
     public boolean addSchool(String schoolName) {
     	return addSchool.addSchool(schoolName);

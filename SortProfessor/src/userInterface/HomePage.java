@@ -184,15 +184,10 @@ public class HomePage extends Page {
 				//this gets the ID for now. To not show the ID would be tricky
 				TableModel model = (TableModel)table.getModel();
 				String profIDString = (String) model.getValueAtByColumnString(table.getSelectedRow(), "ID");
-				
 				//Switch over to a page with advanced data for the prof
+				
+				pageLoader.openProfDataPage(profIDString);
 
-				//if (serviceManager.addClass(tfClassName.getText(), profIDString)){
-					//System.out.println("Added Class: " + tfClassName.getText() + " for prof with ID: " + profIDString);
-//				}
-//				else {
-//					System.out.println("failed to add class");
-//				}
 			}
         });	
         
@@ -211,6 +206,7 @@ public class HomePage extends Page {
         panel.add(labelProfName);
         panel.add(tfProfFname);
         panel.add(tfProfLname);
+        panel.add(viewProfButton);
         //Add the panel to a new homePage tab
         tabs.add(panel, "searchProfs");	
 	}

@@ -15,6 +15,7 @@ public class PageLoader {
 	//add pages here
 	private JFrame frame;
 	private LoginPage loginPage;
+	private ProfDataPage profDataPage;
 	private Page homePage;
 	private ServiceManager serviceManager;
 	private JPanel cards;
@@ -33,17 +34,12 @@ public class PageLoader {
 				serviceManager.closeDatabaseConnection();
 				System.exit(0);
 			}
-			
-			
-			
 		});
+
 	    cards = new JPanel(new CardLayout());
 	    cards.setBounds(0, 0, 1080, 720);
 	    frame.add(cards);
-	    
 		initializePages(frame, serviceManager);
-
-		
 	}
 	
 	/*
@@ -67,10 +63,17 @@ public class PageLoader {
 	
 	//add pages here
 	private void initializePages(JFrame frame, ServiceManager serviceManager) {
+		profDataPage = new ProfDataPage(frame, serviceManager, this, cards);
 		loginPage = new LoginPage(frame, serviceManager, this, cards);
 		homePage = new HomePage(frame, serviceManager, this, cards);
 	}
 	//add methods for controlling pages
+	
+	public void openProfDataPage(String profID) {
+		profDataPage.setProfID(profID);
+		profDataPage.open();
+		
+	}
 	
 	public void openHomePage() {
 	
