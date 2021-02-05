@@ -22,6 +22,7 @@ import userInterface.JCool.CoolTextField;
 public class HomePage extends Page {
 	private JPanel cards;
 	private JTabbedPane tabs;
+	private boolean tabsInitialized = false;
 
 	
 
@@ -29,7 +30,6 @@ public class HomePage extends Page {
 		super(frame, serviceManager, pageLoader);
 		this.cards = cards;
 		this.tabs = new JTabbedPane();
-        
         cards.add(tabs, "HomePage");
 	
 	}
@@ -253,14 +253,30 @@ public class HomePage extends Page {
 
 	public void addHomepageBase(CoolPanel panel) {
 
-		CoolLabel username = new CoolLabel("Welocme " + serviceManager.getUser() + "!", 20, 20);
+		CoolLabel username = new CoolLabel("Welcome " + serviceManager.getUser() + "!", 20, 20);
+		
+		CoolButton button = new CoolButton("Sign out", 40, 40);
+		button.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				pageLoader.openLoginPage();
+			}
+			
+		});
+
 		panel.add(username);
+		panel.add(button);
 		
 	}
 
 	@Override
 	public void open() {
-		initializeTabs();
+		if (!this.tabsInitialized) {
+			this.tabsInitialized = true;
+			initializeTabs();
+		}
+
 		CardLayout layoutCards = (CardLayout)(cards.getLayout());
 		layoutCards.show(cards, "HomePage");
 	}

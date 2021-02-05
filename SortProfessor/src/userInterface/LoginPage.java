@@ -51,6 +51,7 @@ public class LoginPage extends Page {
 
 				if (serviceManager.login(tfUsername.getText(), passwordString)) {
 					System.out.println("logged in as " + tfUsername.getText());
+					tfPassword.setText("");
 					pageLoader.openHomePage();
 				}
 				else {
@@ -69,6 +70,7 @@ public class LoginPage extends Page {
 				String passwordString = new String(passwordArray);
 				Page registerPage = new RegisterPage(frame, serviceManager, pageLoader, cards, tfUsername.getText(), passwordString);
 				registerPage.open();
+				tfPassword.setText("");
 			}
         	
         });
@@ -85,8 +87,6 @@ public class LoginPage extends Page {
         loginPanel.add(registerButton);
         loginPanel.setVisible(true);
         cards.add(loginPanel, "LoginPage");
-        //frame.revalidate(); //not sure if this is necessary
-        //Adding Components to the frame.
         
         frame.setVisible(true);
 	}
@@ -97,10 +97,6 @@ public class LoginPage extends Page {
 		layoutCards.show(cards, "LoginPage");
 	}
 
-	public void close() {
-		// TODO Auto-generated method stub
-		
-	}
 
 
 

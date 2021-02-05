@@ -36,6 +36,17 @@ public class RegisterPage extends Page {
         CoolTextField tfLName = new CoolTextField(null, 200, 275);
 
         CoolButton registerButton = new CoolButton("Register", 300, 325);
+        CoolButton backToLogin = new CoolButton("back", 30, 30);
+        
+        backToLogin.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				tfPassword.setText("");
+				pageLoader.openLoginPage();
+			}
+        	
+        });
 
         registerButton.addActionListener(new ActionListener() {
 
@@ -45,6 +56,7 @@ public class RegisterPage extends Page {
 				String passwordString = new String(passwordArray);
 				if (serviceManager.register(tfUsername.getText(), passwordString, tfFName.getText(), tfLName.getText())) {
 					System.out.println("registered " + tfFName.getText() + " " + tfLName.getText() + " as "+ tfUsername.getText());
+					tfPassword.setText("");
 					// TAKE THE USER TO A PAGE TO FILL OUT MORE REGISTRATION INFO
 					pageLoader.openHomePage();
 				}
@@ -63,6 +75,7 @@ public class RegisterPage extends Page {
         loginPanel.add(tfFName);
         loginPanel.add(tfLName);
 
+        loginPanel.add(backToLogin);
         loginPanel.add(labelUsername);
         loginPanel.add(labelPassword);
         loginPanel.add(registerButton);

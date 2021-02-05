@@ -59,10 +59,16 @@ public class UserService {
 				
 			}
 				code = stmt.getInt(1);
-				System.out.println(code);
 			}
 		catch (SQLException ex) {
-			System.out.println("login failed");
+
+			try {
+				code = stmt.getInt(1);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			handleErrorCodeGetPasswordsForUsername(code);
 			return false;
 			}
 		return false;
@@ -92,24 +98,48 @@ public class UserService {
 			int returnCode = stmt.getInt(1);
 
 		    if (returnCode != 0) {
-		    	System.out.println("Registration SQL error code is " + returnCode);
+		    	this.handleErrorCodeAddStudent(returnCode);
 		    	return false;
 		    }
 			
 			
 			
 		} catch (SQLException e) {
+			System.out.println("That username is already taken");
 			// TODO Auto-generated catch block
-			e.printStackTrace();
 			return false;
 		}
 		
+		serviceManager.setUser(username);
 		return true;
 		
 		
 
 	}
 	
+	public void handleErrorCodeGetPasswordsForUsername(int code) {
+		switch(code) {
+		case 1:
+			System.out.println("Username cannot be null or empty");
+			break;
+		}
+	}
+
+	public void handleErrorCodeAddStudent(int code) {
+		switch(code) {
+		case 1:
+			System.out.println("Student first and last name cannot be null or empty.");
+			break;
+		case 2:
+			System.out.println("Username cannot be null or empty.");
+			break;
+		case 3:
+			System.out.println("PasswordSalt cannot be null or empty.");
+		case 4:
+			System.out.println("PasswordHash cannot be null or empty.");
+		}
+	}
+
 	public byte[] getNewSalt() {
 		byte[] salt = new byte[16];
 		RANDOM.nextBytes(salt);

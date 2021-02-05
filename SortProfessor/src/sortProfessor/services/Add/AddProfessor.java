@@ -42,7 +42,6 @@ public class AddProfessor extends DBAddService{
 		case 3:
 			System.out.println("School does not exist.");
 		}
-		
 	}
 
 	@Override
