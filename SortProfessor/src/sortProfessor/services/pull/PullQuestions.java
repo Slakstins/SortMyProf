@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.sql.Types;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import sortProfessor.services.DatabaseConnectionService;
 
 public class PullQuestions extends DBPullService {
@@ -65,6 +67,15 @@ public class PullQuestions extends DBPullService {
 			}
 			handleErrorCode(code);
 			return null;
+		}
+	}
+
+	@Override
+	public void handleErrorCode(int code) {
+		switch(code) {
+		case 1:
+			JOptionPane.showMessageDialog(null, "System failed to pull questions");
+			break;
 		}
 	}
 

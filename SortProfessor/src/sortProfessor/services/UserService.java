@@ -105,7 +105,7 @@ public class UserService {
 			
 			
 		} catch (SQLException e) {
-			System.out.println("That username is already taken");
+			JOptionPane.showMessageDialog(null, "That username is already taken");
 			// TODO Auto-generated catch block
 			return false;
 		}
@@ -120,7 +120,7 @@ public class UserService {
 	public void handleErrorCodeGetPasswordsForUsername(int code) {
 		switch(code) {
 		case 1:
-			System.out.println("Username cannot be null or empty");
+			JOptionPane.showMessageDialog(null, "Username cannot be null or empty");
 			break;
 		}
 	}
@@ -128,15 +128,15 @@ public class UserService {
 	public void handleErrorCodeAddStudent(int code) {
 		switch(code) {
 		case 1:
-			System.out.println("Student first and last name cannot be null or empty.");
+			JOptionPane.showMessageDialog(null, "Student first and last name cannot be null or empty.");
 			break;
 		case 2:
-			System.out.println("Username cannot be null or empty.");
+			JOptionPane.showMessageDialog(null, "Username cannot be null or empty.");
 			break;
 		case 3:
-			System.out.println("PasswordSalt cannot be null or empty.");
+			JOptionPane.showMessageDialog(null, "PasswordSalt cannot be null or empty.");
 		case 4:
-			System.out.println("PasswordHash cannot be null or empty.");
+			JOptionPane.showMessageDialog(null, "PasswordHash cannot be null or empty.");
 		}
 	}
 

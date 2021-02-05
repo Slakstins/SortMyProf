@@ -4,6 +4,8 @@ import java.sql.CallableStatement;
 import java.sql.SQLException;
 import java.sql.Types;
 
+import javax.swing.JOptionPane;
+
 import sortProfessor.services.DatabaseConnectionService;
 
 public class AddProfessor extends DBAddService{
@@ -34,13 +36,13 @@ public class AddProfessor extends DBAddService{
 	public void handleErrorCode(int code) {
 		switch(code) {
 		case 1:
-			System.out.println("Professor first and last name cannot be null.");
+			JOptionPane.showMessageDialog(null, "Professor first and last name cannot be null.");
 			break;
 		case 2:
-			System.out.println("School name cannot be null or empty.");
+			JOptionPane.showMessageDialog(null, "School name cannot be null or empty.");
 			break;
 		case 3:
-			System.out.println("School does not exist.");
+			JOptionPane.showMessageDialog(null, "School does not exist.");
 		}
 	}
 

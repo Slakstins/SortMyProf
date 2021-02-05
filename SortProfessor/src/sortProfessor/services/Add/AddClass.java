@@ -4,6 +4,8 @@ import java.sql.CallableStatement;
 import java.sql.SQLException;
 import java.sql.Types;
 
+import javax.swing.JOptionPane;
+
 import sortProfessor.services.DatabaseConnectionService;
 
 
@@ -35,10 +37,10 @@ public class AddClass extends DBAddService{
 	public void handleErrorCode(int code) {
 		switch(code) {
 		case 1:
-			System.out.println("Class name cannot be null or empty.");
+			JOptionPane.showMessageDialog(null, "Class name cannot be null or empty.");
 			break;
 		case 2:
-			System.out.println("Invalid ProfessorID.");
+			JOptionPane.showMessageDialog(null, "Invalid ProfessorID.");
 			break;
 		}
 	}

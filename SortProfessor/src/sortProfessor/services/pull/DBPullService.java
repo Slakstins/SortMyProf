@@ -14,10 +14,7 @@ public abstract class DBPullService extends DBService {
 	}
 
 	@Override
-	public void handleErrorCode(int code) {
-		// TODO Auto-generated method stub
-
-	}
+	public abstract void handleErrorCode(int code);
 
 	@Override
 	public void displaySuccess() {

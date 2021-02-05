@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.sql.Types;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import sortProfessor.services.DatabaseConnectionService;
 
 public class PullProfessors extends DBPullService {
@@ -85,10 +87,10 @@ public class PullProfessors extends DBPullService {
 	public void handleErrorCode(int code) {
 		switch(code) {
 		case 1:
-			System.out.println("Professor first name cannot be null or empty.");
+			JOptionPane.showMessageDialog(null, "Professor first name cannot be null or empty.");
 			break;
 		case 2:
-			System.out.println("Professor last name cannot be null or empty.");
+			JOptionPane.showMessageDialog(null, "Professor last name cannot be null or empty.");
 			break;
 		}
 	}

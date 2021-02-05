@@ -35,10 +35,10 @@ public class HomePage extends Page {
 	}
 	private void initializeTabs() {
 		//remember to update these
-		createAddProfTab();
-		createAddClassTab();
-		createAddSchoolTab();
 		createViewProfsTab();
+		createAddProfTab();
+		createAddClassTab(); // probably going to merge this one into rate prof tab
+		createAddSchoolTab();
 		
 	}
 	

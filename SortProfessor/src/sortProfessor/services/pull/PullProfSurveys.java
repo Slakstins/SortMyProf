@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.sql.Types;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import sortProfessor.services.DatabaseConnectionService;
 
 public class PullProfSurveys extends DBPullService {
@@ -83,7 +85,7 @@ public class PullProfSurveys extends DBPullService {
 	public void handleErrorCode(int code) {
 		switch(code) {
 		case 1:
-			System.out.println("professorID invalid");
+			JOptionPane.showMessageDialog(null, "professorID invalid");
 			break;
 		}
 	}
