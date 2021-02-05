@@ -25,6 +25,7 @@ public class AddSchool extends DBAddService{
 	
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
+			JOptionPane.showMessageDialog(null, "That school already exists");
 			return false;
 		}
 	}
@@ -41,6 +42,6 @@ public class AddSchool extends DBAddService{
 	@Override
 	public void displaySuccess() {
 		// TODO Auto-generated method stub
-		System.out.println("School Added");
+		JOptionPane.showMessageDialog(null, "School Added");
 	}
 }

@@ -4,6 +4,7 @@ import java.sql.CallableStatement;
 import java.sql.SQLException;
 import java.sql.Types;
 
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
 import sortProfessor.services.DatabaseConnectionService;
@@ -23,10 +24,12 @@ public class AddProfessor extends DBAddService{
 			stmt.setString(2, firstName);
 			stmt.setString(3, lastName);
 			stmt.setString(4, schoolName);
-			return super.finalizeAddStmt(stmt);
+			boolean output = super.finalizeAddStmt(stmt);
+			return output;
 	
 			
 		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "duplicate professor");
 
 			return false;
 		}
@@ -49,7 +52,7 @@ public class AddProfessor extends DBAddService{
 	@Override
 	public void displaySuccess() {
 		// TODO Auto-generated method stub
-		System.out.println("Professor Added");
+		JOptionPane.showMessageDialog(null, "Professor Added");
 		
 	}
 

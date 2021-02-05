@@ -48,6 +48,6 @@ public class AddClass extends DBAddService{
 	@Override
 	public void displaySuccess() {
 		// TODO Auto-generated method stub
-		System.out.println("Class Added");
+		JOptionPane.showMessageDialog(null, "Class Added");
 	}
 }
