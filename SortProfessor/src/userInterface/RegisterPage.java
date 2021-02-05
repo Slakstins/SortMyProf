@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 
@@ -60,8 +61,9 @@ public class RegisterPage extends Page {
 					// TAKE THE USER TO A PAGE TO FILL OUT MORE REGISTRATION INFO
 					pageLoader.openHomePage();
 				}
+
 				else {
-					System.out.println("Registration failed");
+					JOptionPane.showMessageDialog(null, "Registration failed");
 				}
 			}
         	

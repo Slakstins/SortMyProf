@@ -253,13 +253,16 @@ public class HomePage extends Page {
 
 	public void addHomepageBase(CoolPanel panel) {
 
-		CoolLabel username = new CoolLabel("Welcome " + serviceManager.getUser() + "!", 20, 20);
+
+		CoolLabel username = new CoolLabel("Hi " + serviceManager.getUser() + "!", 20, 20);
+		username.setDimensions(200, 20);
 		
 		CoolButton button = new CoolButton("Sign out", 40, 40);
 		button.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				close();
 				pageLoader.openLoginPage();
 			}
 			
@@ -269,13 +272,23 @@ public class HomePage extends Page {
 		panel.add(button);
 		
 	}
+	
+	
+	/**
+	 * call this when switching back and forth. Open is for initializing tabs and stuff
+	 */
+	public void switchTo() {
+		CardLayout layoutCards = (CardLayout)(cards.getLayout());
+		layoutCards.show(cards, "HomePage");
+	}
+	
+	public void close() {
+		this.tabs.removeAll();
+	}
 
 	@Override
 	public void open() {
-		if (!this.tabsInitialized) {
-			this.tabsInitialized = true;
-			initializeTabs();
-		}
+		initializeTabs();
 
 		CardLayout layoutCards = (CardLayout)(cards.getLayout());
 		layoutCards.show(cards, "HomePage");

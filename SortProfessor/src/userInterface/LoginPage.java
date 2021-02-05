@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
@@ -55,7 +56,7 @@ public class LoginPage extends Page {
 					pageLoader.openHomePage();
 				}
 				else {
-					System.out.println("login failed");
+					JOptionPane.showMessageDialog(null, "login failed");
 				}
 			}
         });
