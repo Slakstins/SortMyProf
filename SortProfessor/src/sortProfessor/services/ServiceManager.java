@@ -19,6 +19,7 @@ public class ServiceManager {
 	private PullProfessors pullProfessors;
 	private PullProfSurveys pullProfSurveys;
 	private PullQuestions pullQuestions;
+	private String currentUsername;
 	
 	public ServiceManager(DatabaseConnectionService dbcs) {
 		this.dbcs = dbcs;
@@ -30,7 +31,7 @@ public class ServiceManager {
 	 */
 	private void initializeServices() {
 		addProfessor = new AddProfessor(dbcs);
-		userService = new UserService(dbcs);
+		userService = new UserService(dbcs, this);
 		addClass = new AddClass(dbcs);
 		addSchool = new AddSchool(dbcs);
 		pullProfSurveys = new PullProfSurveys(dbcs);
@@ -39,6 +40,14 @@ public class ServiceManager {
 		pullProfessors = new PullProfessors(dbcs);
 		pullQuestions = new PullQuestions(dbcs);
 		
+	}
+	
+	public void setUser(String username) {
+		this.currentUsername = username;
+	}
+	
+	public String getUser() {
+		return this.currentUsername;
 	}
 	
 	

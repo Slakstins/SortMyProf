@@ -10,6 +10,7 @@ import javax.swing.JTable;
 
 import sortProfessor.services.ServiceManager;
 import userInterface.JCool.CoolPanel;
+import userInterface.JCool.CoolTextField;
 
 public class PageLoader {
 	//add pages here
@@ -74,6 +75,8 @@ public class PageLoader {
 		profDataPage.open();
 		
 	}
+	
+
 	
 	public void openHomePage() {
 	

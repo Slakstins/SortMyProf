@@ -24,8 +24,10 @@ public class UserService {
 	private static final Base64.Decoder dec = Base64.getDecoder();
 	private DatabaseConnectionService dbService = null;
 	private String loginQueryProc = "{? = call GetPasswordsForUsername(?)}";
+	private ServiceManager serviceManager;
 
-	public UserService(DatabaseConnectionService dbService) {
+	public UserService(DatabaseConnectionService dbService, ServiceManager serviceManager) {
+		this.serviceManager = serviceManager;
 		this.dbService = dbService;
 	}
 
@@ -51,6 +53,7 @@ public class UserService {
 				
 				if (hash.equals(rs.getString("PasswordHash"))) {
 					System.out.println("login successful");
+					serviceManager.setUser(username);
 					return true;
 				}
 				

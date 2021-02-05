@@ -29,7 +29,6 @@ public class HomePage extends Page {
 		super(frame, serviceManager, pageLoader);
 		this.cards = cards;
 		this.tabs = new JTabbedPane();
-		initializeTabs();
         
         cards.add(tabs, "HomePage");
 	
@@ -76,6 +75,7 @@ public class HomePage extends Page {
 		//Establish cool components and listeners
 		
 		//Add components to a Cool panel
+        this.addHomepageBase(panel);
         panel.add(schoolName);
         panel.add(tfSchoolName);
         panel.add(addProfButton); 
@@ -145,6 +145,7 @@ public class HomePage extends Page {
         });	
 		
 		//Add components to a Cool panel
+        this.addHomepageBase(panel);
         panel.add(searchProfsButton);
         panel.add(labelProfName);
         panel.add(tfProfFname);
@@ -210,6 +211,7 @@ public class HomePage extends Page {
         
 		
 		//Add components to a Cool panel
+        this.addHomepageBase(panel);
         panel.add(searchProfsButton);
         panel.add(labelProfName);
         panel.add(labelProfFName);
@@ -241,6 +243,7 @@ public class HomePage extends Page {
 		
 		//Add components to a Cool panel
         CoolPanel panel = new CoolPanel();
+        this.addHomepageBase(panel);
         panel.add(labelSchoolName);
         panel.add(tfSchoolName);
         panel.add(addSchoolButton);
@@ -248,9 +251,16 @@ public class HomePage extends Page {
         tabs.add(panel, "addSchool");	
 	}
 
+	public void addHomepageBase(CoolPanel panel) {
+
+		CoolLabel username = new CoolLabel("Welocme " + serviceManager.getUser() + "!", 20, 20);
+		panel.add(username);
+		
+	}
 
 	@Override
 	public void open() {
+		initializeTabs();
 		CardLayout layoutCards = (CardLayout)(cards.getLayout());
 		layoutCards.show(cards, "HomePage");
 	}
