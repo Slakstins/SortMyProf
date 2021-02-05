@@ -18,6 +18,7 @@ public class PageLoader {
 	private LoginPage loginPage;
 	private ProfDataPage profDataPage;
 	private Page homePage;
+	private Page surveyPage;
 	private ServiceManager serviceManager;
 	private JPanel cards;
 	public static int frameWidth = 1080;
@@ -67,6 +68,7 @@ public class PageLoader {
 		profDataPage = new ProfDataPage(frame, serviceManager, this, cards);
 		loginPage = new LoginPage(frame, serviceManager, this, cards);
 		homePage = new HomePage(frame, serviceManager, this, cards);
+		surveyPage = new SurveyPage(frame, serviceManager, this, cards);
 	}
 	//add methods for controlling pages
 	
@@ -74,6 +76,10 @@ public class PageLoader {
 		profDataPage.setProfID(profID);
 		profDataPage.open();
 		
+	}
+	
+	public void openSurveyPage() {
+		surveyPage.open();
 	}
 	
 

@@ -12,7 +12,7 @@ import sortProfessor.services.DatabaseConnectionService;
 
 public class PullQuestions extends DBPullService {
 	private CallableStatement stmt = null;
-	private String queryProc = "{? = call PullQuestions}";
+	private String queryProc = "{? = call PullQuestions()}";
 	private String column1Name = "text";
 	private String column2Name = "AnswerA";
 	private String column3Name = "AnswerB";	
