@@ -24,6 +24,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import houseCalculations.ProfSorter;
 import sortProfessor.services.ServiceManager;
 import userInterface.JCool.CoolButton;
 import userInterface.JCool.CoolLabel;
@@ -39,57 +40,32 @@ public class SurveyPage extends Page {
 	private JScrollPane scrollPane;
 	private int questionsStartX = 100;
 	private int questionsStartY = 100;
+	private ArrayList<CoolQuestion> questionPanels;
+	private ArrayList<Integer> currentAnswers;
 	
 	public SurveyPage(JFrame frame, ServiceManager serviceManager, PageLoader pageLoader, JPanel cards) {
 		super(frame, serviceManager, pageLoader);
 		this.cards = cards;
-		
-		
-
-        
 		surveyPanel = new CoolPanel();
 		surveyPanel.setLayout(new BoxLayout(surveyPanel, BoxLayout.Y_AXIS));
-		
 		surveyPanel.add(Box.createRigidArea(new Dimension(40, 20)));	
-		
-		
-		surveyPanel.setPreferredSize(new Dimension(1080, 1500));
-		
-		
-
-//		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-//
-//		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);  
-		
-		
-		
-        // Text Area at the Center
-        // TODO add the things here
+		surveyPanel.setPreferredSize(new Dimension(1000, 2000));
         surveyPanel.setVisible(true);
-        
         CoolButton cancelButton = new CoolButton("Back", 0, 0);
-        
-
         cancelButton.setMaximumSize(new Dimension(60, 30));
-        
         surveyPanel.add(cancelButton);
 
         //ADD SCORE DROP DOWN
         
 		scrollPane = new JScrollPane(surveyPanel);
-        
-		scrollPane.setPreferredSize(new Dimension(PageLoader.frameWidth, PageLoader.frameHeight));
         cards.add(scrollPane, "SurveyPage");
-        //frame.revalidate(); //not sure if this is necessary
-        //Adding Components to the frame.
         
         frame.setVisible(true);
 	}
 	
 	
 	public void initializeQuestions() {
-
-		
+		questionPanels = new ArrayList<CoolQuestion>();
 		ArrayList<ArrayList<String>> questions = serviceManager.pullQuestions();
 		if (questions.size() > 0) {
 			if (questions.get(0).size() > 0) {
@@ -108,6 +84,7 @@ public class SurveyPage extends Page {
 					options.add(option4);
 					//
 					CoolQuestion questionPanel = new CoolQuestion(question, options);
+					questionPanels.add(questionPanel);
 					surveyPanel.add(questionPanel);
 				}
 			}
@@ -120,17 +97,48 @@ public class SurveyPage extends Page {
         CoolButton submitButton = new CoolButton("Submit", 0, 0);
         submitButton.setMaximumSize(new Dimension(60, 30));
         surveyPanel.add(submitButton);
+        submitButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (checkAllQuestionsAnswered()) {
+					String house = ProfSorter.determineHouse(currentAnswers);
+					//run a query using currentAnswers
+					
+				}
+			}
+        });
 		CardLayout layoutCards = (CardLayout)(cards.getLayout());
 		layoutCards.show(cards, "SurveyPage");
-
-
-
 	}
 
-	public void close() {
+	/**
+	 * more efficient to have an action listener for every buttonGroup
+	 * that updates the arrayList value at that index in real time,
+	 * but we only have 10 questions so nbd to just update them all 
+	 * on submission.
+	 * this method also sets the currentAnswers for the submission query
+	 * 
+	 * @return
+	 */
+	private boolean checkAllQuestionsAnswered() {
+		currentAnswers = new ArrayList<Integer>();
+		for (int i = 0; i < questionPanels.size(); i++) {
+			CoolQuestion curQuestion = questionPanels.get(i);
+			int answer = (curQuestion.getAnswer());
+			currentAnswers.add(answer);
+			if (answer == -1) {
+				System.out.println(false);
+				return false;
+			}
+		}
+		System.out.println(true);
+		return true;
 		
 	}
 
-
+	public void close() {
+		surveyPanel.removeAll();
+	}
 
 }

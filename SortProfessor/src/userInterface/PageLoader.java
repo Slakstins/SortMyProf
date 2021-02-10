@@ -29,7 +29,8 @@ public class PageLoader {
 		frame = new JFrame("Sort My Professor");
 	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLayout(null);
-	    frame.setSize(frameWidth, frameHeight);
+		//need to add 20 here for the scrollbar for whatever reason
+	    frame.setSize(frameWidth + 15, frameHeight);
 		frame.addWindowListener(new java.awt.event.WindowAdapter() {
 			@Override
 			public void windowClosing(java.awt.event.WindowEvent windowEvent) {
