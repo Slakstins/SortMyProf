@@ -119,7 +119,8 @@ public class HomePage extends Page {
         header.add("LastName");
         header.add("SchoolName");
         header.add("AvgRating");
-        JTable table = pageLoader.addTable(header, panel, 450, 100);
+        header.add("House");
+        JTable table = pageLoader.addTable(header, panel, 450, 100, 600, 400);
         
         searchProfsButton.addActionListener(new ActionListener() {
 			@Override
@@ -186,8 +187,9 @@ public class HomePage extends Page {
         header.add("LastName");
         header.add("SchoolName");
         header.add("AvgRating");
+        header.add("House");
 
-        JTable table = pageLoader.addTable(header, panel, 450, 100);
+        JTable table = pageLoader.addTable(header, panel, 450, 100, 600, 400);
         
         addRatingButton.addActionListener(new ActionListener() {
 
@@ -268,7 +270,7 @@ public class HomePage extends Page {
         header.add("House Name");
         header.add("House Points");
 
-        JTable table = pageLoader.addTable(header, panel, 500, 100);
+        JTable table = pageLoader.addTable(header, panel, 500, 100, 300, 400);
         
         searchSchoolButton.addActionListener(new ActionListener() {
 			@Override

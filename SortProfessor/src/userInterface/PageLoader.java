@@ -50,14 +50,14 @@ public class PageLoader {
 	 * used by pages to add tables of queried data
 	 * Returns a reference to the new table
 	 */
-	public JTable addTable(ArrayList<String> headers, CoolPanel panel, int x, int y) {
+	public JTable addTable(ArrayList<String> headers, CoolPanel panel, int x, int y, int width, int height) {
 		
 		JTable table = new JTable();
 		TableModel tableModel = new TableModel(new ArrayList<ArrayList<String>>(), headers);
 		table.setModel(tableModel);
 
 		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setBounds(x, y, 600, 400);
+		scrollPane.setBounds(x, y, width, height);
 		panel.add(scrollPane);
 		panel.revalidate();
 		

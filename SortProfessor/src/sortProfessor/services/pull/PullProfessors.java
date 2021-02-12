@@ -18,6 +18,7 @@ public class PullProfessors extends DBPullService {
 	private String column3Name = "LastName";	
 	private String column4Name = "Name";	
 	private String column5Name = "AvgScore";
+	private String column6Name = "House";
 
 	public PullProfessors(DatabaseConnectionService dbcs) {
 		super(dbcs);
@@ -36,6 +37,7 @@ public class PullProfessors extends DBPullService {
 		ArrayList<String> LNames = new ArrayList<String>();
 		ArrayList<String> schoolNames = new ArrayList<String>();
 		ArrayList<String> avgRatings = new ArrayList<String>();
+		ArrayList<String> houseNames = new ArrayList<String>();
 		stmt = generateCallableStatement(queryProc);
 		try {
 			stmt.registerOutParameter(1, Types.INTEGER);
@@ -52,12 +54,14 @@ public class PullProfessors extends DBPullService {
 				String LName = rs.getString(column3Name);
 				String schoolName = rs.getString(column4Name);
 				String avgRating = rs.getString(column5Name);
+				String houseName = rs.getString(column6Name);
 
 				ids.add(id);
 				FNames.add(FName);
 				LNames.add(LName);
 				schoolNames.add(schoolName);
 				avgRatings.add(avgRating);
+				houseNames.add(houseName);
 				}
 		
 			ArrayList<ArrayList<String>> professors = new ArrayList<ArrayList<String>>();
@@ -66,6 +70,7 @@ public class PullProfessors extends DBPullService {
 			professors.add(LNames);
 			professors.add(schoolNames);
 			professors.add(avgRatings);
+			professors.add(houseNames);
 			return professors;
 				
 	
