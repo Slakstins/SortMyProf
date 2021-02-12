@@ -3,6 +3,8 @@ package userInterface;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -34,10 +36,39 @@ public class SurveyPage2 extends Page{
 		houseLabel = new JLabel();
 		houseLabel.setBounds(400, 50, 200, 20);
 
-        JLabel instruction = new JLabel("Optional Comment:");
+        JLabel instruction = new JLabel("Optional 120 Character Comment:");
         instruction.setBounds(100, 100, 300, 20);
         
         JTextArea comment = new JTextArea(); 
+        comment.addKeyListener(new KeyListener() {
+
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// TODO Auto-generated method stub
+				int max = 120;
+				if (comment.getText().length() > max + 1) {
+					e.consume();
+					String shortened = comment.getText().substring(0, max);
+					comment.setText(shortened);
+				}
+				else if (comment.getText().length() > max) {
+					e.consume();
+				}
+			}
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+        	
+        });
         comment.setBounds(100, 140, 600, 100);
 
         CoolButton submitButton = new CoolButton("SortProf", 200, 400);

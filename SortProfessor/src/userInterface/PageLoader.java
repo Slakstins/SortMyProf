@@ -57,7 +57,7 @@ public class PageLoader {
 		table.setModel(tableModel);
 
 		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setBounds(x, y, 300, 400);
+		scrollPane.setBounds(x, y, 600, 400);
 		panel.add(scrollPane);
 		panel.revalidate();
 		

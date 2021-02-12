@@ -30,14 +30,15 @@ public class ProfDataPage extends Page {
 	public ProfDataPage(JFrame frame, ServiceManager serviceManager, PageLoader pageLoader, JPanel cards) {
 		super(frame, serviceManager, pageLoader);
 		this.cards = cards;
+		
 		surveyDataPanel = new CoolPanel();
 		surveyDataPanel.setLayout(new BoxLayout(surveyDataPanel, BoxLayout.Y_AXIS));
-		surveyDataPanel.add(Box.createRigidArea(new Dimension(40, 20)));	
+		//surveyDataPanel.add(Box.createRigidArea(new Dimension(40, 20)));	
 		surveyDataPanel.setPreferredSize(new Dimension(1000, 2000));
         surveyDataPanel.setVisible(true);
-        //ADD SCORE DROP DOWN
+    	scrollPane = new JScrollPane(surveyDataPanel);
         
-		scrollPane = new JScrollPane(surveyDataPanel);
+        
         cards.add(scrollPane, "ProfDataPage");
         frame.setVisible(true);
 	}
@@ -61,8 +62,28 @@ public class ProfDataPage extends Page {
 			System.out.println("no surveys for that prof");
 		}
 	}
+	
+	public void close() {
+		surveyDataPanel.removeAll();
+	}
 
 	public void open() {
+		
+        //ADD SCORE DROP DOWN
+        
+        CoolButton backButton = new CoolButton("Back");
+        backButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				close();
+				pageLoader.openHomePage();
+			}
+        	
+        });
+	    backButton.setMaximumSize(new Dimension(60, 30));
+        surveyDataPanel.add(backButton);
+	;
 		CardLayout layoutCards = (CardLayout)(cards.getLayout());
 		ArrayList<ArrayList<String>> surveysData = serviceManager.pullProfSurveys(profID);
 	

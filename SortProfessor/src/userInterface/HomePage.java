@@ -118,7 +118,7 @@ public class HomePage extends Page {
         header.add("LastName");
         header.add("SchoolName");
         header.add("AvgRating");
-        JTable table = pageLoader.addTable(header, panel, 500, 100);
+        JTable table = pageLoader.addTable(header, panel, 450, 100);
         
         searchProfsButton.addActionListener(new ActionListener() {
 			@Override
@@ -186,7 +186,7 @@ public class HomePage extends Page {
         header.add("SchoolName");
         header.add("AvgRating");
 
-        JTable table = pageLoader.addTable(header, panel, 500, 100);
+        JTable table = pageLoader.addTable(header, panel, 450, 100);
         
         addRatingButton.addActionListener(new ActionListener() {
 
@@ -218,6 +218,7 @@ public class HomePage extends Page {
 				//Switch over to a page with advanced data for the prof
 				
 				if (profIDString != null) {
+					close();
 					pageLoader.openProfDataPage(profIDString);
 				}
 				else {

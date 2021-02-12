@@ -16,6 +16,10 @@ public class CoolButton extends Button {
 	    this.setBounds(x, y, width, height);
 	}
 	
+	public CoolButton(String title) {
+		super(title);
+	}
+	
 	public void setDimensions(int newWidth, int newHeight) {
 		
 	    this.setBounds(x, y, width, height);
