@@ -19,30 +19,33 @@ public class ProfSorter {
 			int questionSelection = surveyResults.get(i);
 			switch(questionSelection) {
 			case 0:
-				gryffindor += questionSelection;
+				gryffindor++;
 				if (gryffindor > highestHousePoints) {
 					highestHouse = 0;
 					highestHousePoints = gryffindor;
 				}
 				break;
 			case 1:
-				slytherin += questionSelection;
+				slytherin++;
 				if (slytherin > highestHousePoints) {
 					highestHouse = 1;
 					highestHousePoints = slytherin;
 				}
+				break;
 			case 2:
-				ravenclaw += questionSelection;
+				ravenclaw++;
 				if (ravenclaw > highestHousePoints) {
 					highestHouse = 2;
 					highestHousePoints = ravenclaw;
 				}
+				break;
 			case 3:
-				hufflepuff += questionSelection;
+				hufflepuff++;
 				if (hufflepuff > highestHousePoints) {
 					highestHouse = 3;
 					highestHousePoints = hufflepuff;
 				}
+				break;
 			}
 		}
 		

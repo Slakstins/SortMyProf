@@ -26,7 +26,7 @@ public abstract class DBAddService extends DBService{
 			stmt.execute();
 			int code = stmt.getInt(1);
 			if (code != 0) {
-				System.out.println("Nonzero SQL return code");
+				System.out.println("SQL return code: " + code);
 				handleErrorCode(code);
 				return false;
 			} else {

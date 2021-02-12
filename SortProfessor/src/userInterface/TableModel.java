@@ -2,6 +2,7 @@ package userInterface;
 
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.AbstractTableModel;
 
 public class TableModel extends AbstractTableModel {
@@ -33,7 +34,7 @@ public class TableModel extends AbstractTableModel {
 	@Override
 	public int getRowCount() {
 		// TODO Auto-generated method stub
-		if (data.size() > 0) {
+		if (data != null && data.size() > 0) {
      		return data.get(0).size();
 			
 		}
@@ -56,6 +57,11 @@ public class TableModel extends AbstractTableModel {
 
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
+		if (rowIndex < 0) {
+			JOptionPane.showMessageDialog(null, "must select a prof");
+			return null;
+		}
+
 		return data.get(columnIndex).get(rowIndex);
 	}
 	

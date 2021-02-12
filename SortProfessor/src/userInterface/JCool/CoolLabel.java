@@ -14,6 +14,9 @@ public class CoolLabel extends Label {
 	    this.setBounds(x, y, width, height);
 	}
 	
+	public CoolLabel(String title) {
+		super(title);
+	}
 	public void setDimensions(int newWidth, int newHeight) {
 		
 	    this.setBounds(x, y, width, height);

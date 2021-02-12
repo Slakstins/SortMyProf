@@ -17,6 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
@@ -38,10 +39,9 @@ public class SurveyPage extends Page {
 	private JPanel cards;
 	private CoolPanel surveyPanel;
 	private JScrollPane scrollPane;
-	private int questionsStartX = 100;
-	private int questionsStartY = 100;
 	private ArrayList<CoolQuestion> questionPanels;
 	private ArrayList<Integer> currentAnswers;
+	private String profID = null;
 	
 	public SurveyPage(JFrame frame, ServiceManager serviceManager, PageLoader pageLoader, JPanel cards) {
 		super(frame, serviceManager, pageLoader);
@@ -51,16 +51,16 @@ public class SurveyPage extends Page {
 		surveyPanel.add(Box.createRigidArea(new Dimension(40, 20)));	
 		surveyPanel.setPreferredSize(new Dimension(1000, 2000));
         surveyPanel.setVisible(true);
-        CoolButton cancelButton = new CoolButton("Back", 0, 0);
-        cancelButton.setMaximumSize(new Dimension(60, 30));
-        surveyPanel.add(cancelButton);
-
         //ADD SCORE DROP DOWN
         
 		scrollPane = new JScrollPane(surveyPanel);
         cards.add(scrollPane, "SurveyPage");
         
         frame.setVisible(true);
+	}
+	
+	public void setProfID(String profID) {
+		this.profID = profID;
 	}
 	
 	
@@ -93,17 +93,30 @@ public class SurveyPage extends Page {
 
 	
 	public void open() {
+	       CoolButton cancelButton = new CoolButton("Back", 0, 0);
+	    cancelButton.addActionListener(new ActionListener() {
+	    @Override
+	    public void actionPerformed(ActionEvent e) {
+	    	close();
+	    	pageLoader.openHomePage();
+	    	}
+	    });
+	    cancelButton.setMaximumSize(new Dimension(60, 30));
+	    surveyPanel.add(cancelButton);
 		initializeQuestions();
         CoolButton submitButton = new CoolButton("Submit", 0, 0);
         submitButton.setMaximumSize(new Dimension(60, 30));
         surveyPanel.add(submitButton);
+ 
+
         submitButton.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (checkAllQuestionsAnswered()) {
 					String house = ProfSorter.determineHouse(currentAnswers);
-					//run a query using currentAnswers
+					close();
+					pageLoader.openSurveyPage2(profID, house);
 					
 				}
 			}
@@ -111,7 +124,7 @@ public class SurveyPage extends Page {
 		CardLayout layoutCards = (CardLayout)(cards.getLayout());
 		layoutCards.show(cards, "SurveyPage");
 	}
-
+	
 	/**
 	 * more efficient to have an action listener for every buttonGroup
 	 * that updates the arrayList value at that index in real time,
@@ -128,11 +141,10 @@ public class SurveyPage extends Page {
 			int answer = (curQuestion.getAnswer());
 			currentAnswers.add(answer);
 			if (answer == -1) {
-				System.out.println(false);
+				JOptionPane.showMessageDialog(null, "Not all questions are answered");
 				return false;
 			}
 		}
-		System.out.println(true);
 		return true;
 		
 	}

@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
@@ -191,7 +192,16 @@ public class HomePage extends Page {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				pageLoader.openSurveyPage();
+				TableModel model = (TableModel)table.getModel();
+				String profIDString = (String) model.getValueAtByColumnString(table.getSelectedRow(), "ID");
+				if (profIDString == null) {
+					
+				}
+				else {
+					
+				close();
+				pageLoader.openSurveyPage(profIDString);
+				}
 
 				
 			}
@@ -207,7 +217,12 @@ public class HomePage extends Page {
 				String profIDString = (String) model.getValueAtByColumnString(table.getSelectedRow(), "ID");
 				//Switch over to a page with advanced data for the prof
 				
-				pageLoader.openProfDataPage(profIDString);
+				if (profIDString != null) {
+					pageLoader.openProfDataPage(profIDString);
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Must select a professor first");
+				}
 
 			}
         });	

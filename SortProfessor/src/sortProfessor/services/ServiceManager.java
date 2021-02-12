@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import sortProfessor.services.Add.AddClass;
 import sortProfessor.services.Add.AddProfessor;
 import sortProfessor.services.Add.AddSchool;
+import sortProfessor.services.Add.SubmitSurvey;
 import sortProfessor.services.pull.PullProfSurveys;
 import sortProfessor.services.pull.PullProfessors;
 import sortProfessor.services.pull.PullQuestions;
@@ -16,6 +17,7 @@ public class ServiceManager {
 	private AddProfessor addProfessor;
 	private AddClass addClass;
 	private AddSchool addSchool;
+	private SubmitSurvey submitSurvey;
 	private PullProfessors pullProfessors;
 	private PullProfSurveys pullProfSurveys;
 	private PullQuestions pullQuestions;
@@ -35,6 +37,7 @@ public class ServiceManager {
 		addClass = new AddClass(dbcs);
 		addSchool = new AddSchool(dbcs);
 		pullProfSurveys = new PullProfSurveys(dbcs);
+		submitSurvey = new SubmitSurvey(dbcs);
 		
 		
 		pullProfessors = new PullProfessors(dbcs);
@@ -61,6 +64,10 @@ public class ServiceManager {
     	return addSchool.addSchool(schoolName);
     }
     
+    public boolean submitSurvey(String profID, String studentUsername, String houseName, int score, String comment) {
+    	return submitSurvey.submitSurvey(profID, studentUsername, houseName, score, comment);
+    	
+    }
 
     public boolean addClass(String className, String profID) {
     	return addClass.addClass(className, profID);
@@ -92,6 +99,5 @@ public class ServiceManager {
     	dbcs.closeConnection();
     	
     }
-    
-	
+
 }

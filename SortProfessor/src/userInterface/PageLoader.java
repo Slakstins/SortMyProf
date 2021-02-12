@@ -18,8 +18,9 @@ public class PageLoader {
 	private LoginPage loginPage;
 	private ProfDataPage profDataPage;
 	private Page homePage;
-	private Page surveyPage;
+	private SurveyPage surveyPage;
 	private ServiceManager serviceManager;
+	private SurveyPage2 surveyPage2;
 	private JPanel cards;
 	public static int frameWidth = 1080;
 	public static int frameHeight = 720;
@@ -70,8 +71,15 @@ public class PageLoader {
 		loginPage = new LoginPage(frame, serviceManager, this, cards);
 		homePage = new HomePage(frame, serviceManager, this, cards);
 		surveyPage = new SurveyPage(frame, serviceManager, this, cards);
+		surveyPage2 = new SurveyPage2(frame, serviceManager, this, cards);
 	}
 	//add methods for controlling pages
+	
+	public void openSurveyPage2(String profID, String housename) {
+		surveyPage2.setProfID(profID);
+		surveyPage2.setHouseName(housename);
+		surveyPage2.open();
+	}
 	
 	public void openProfDataPage(String profID) {
 		profDataPage.setProfID(profID);
@@ -79,7 +87,8 @@ public class PageLoader {
 		
 	}
 	
-	public void openSurveyPage() {
+	public void openSurveyPage(String profID) {
+		surveyPage.setProfID(profID);
 		surveyPage.open();
 	}
 	
