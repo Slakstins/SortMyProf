@@ -37,6 +37,7 @@ public class HomePage extends Page {
 	private void initializeTabs() {
 		//remember to update these
 		createViewProfsTab();
+		createViewHousesTab();
 		createAddProfTab();
 		createAddClassTab(); // probably going to merge this one into rate prof tab
 		createAddSchoolTab();
@@ -250,6 +251,42 @@ public class HomePage extends Page {
         panel.add(viewProfButton);
         //Add the panel to a new homePage tab
         tabs.add(panel, "searchProfs");	
+	}
+	
+	private void createViewHousesTab(){
+		//Establish cool components and listeners
+        CoolButton searchSchoolButton = new CoolButton("Search schools", 200, 300);
+        
+        CoolLabel labelSchoolName = new CoolLabel("School name:", 100, 200);
+        
+        CoolTextField tfSchoolName = new CoolTextField(null, 200, 200);
+
+        CoolPanel panel = new CoolPanel();
+        
+        ArrayList<String> header = new ArrayList<String>();
+        
+        header.add("House Name");
+        header.add("House Points");
+
+        JTable table = pageLoader.addTable(header, panel, 500, 100);
+        
+        searchSchoolButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ArrayList<ArrayList<String>> results = serviceManager.pullSchoolHouses(tfSchoolName.getText());
+				TableModel model =(TableModel) table.getModel();
+				model.setData(results);
+			}
+        });	
+        
+		
+		//Add components to a Cool panel
+        this.addHomepageBase(panel);
+        panel.add(searchSchoolButton);
+        panel.add(labelSchoolName);
+        panel.add(tfSchoolName);
+        //Add the panel to a new homePage tab
+        tabs.add(panel, "Search Schools");	
 	}
 	
 	private void createAddSchoolTab(){

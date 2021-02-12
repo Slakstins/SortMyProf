@@ -9,6 +9,7 @@ import sortProfessor.services.Add.SubmitSurvey;
 import sortProfessor.services.pull.PullProfSurveys;
 import sortProfessor.services.pull.PullProfessors;
 import sortProfessor.services.pull.PullQuestions;
+import sortProfessor.services.pull.PullSchoolHouses;
 
 public class ServiceManager {
 	DatabaseConnectionService dbcs = null;
@@ -21,6 +22,7 @@ public class ServiceManager {
 	private PullProfessors pullProfessors;
 	private PullProfSurveys pullProfSurveys;
 	private PullQuestions pullQuestions;
+	private PullSchoolHouses pullSchoolHouses;
 	private String currentUsername;
 	
 	public ServiceManager(DatabaseConnectionService dbcs) {
@@ -42,6 +44,7 @@ public class ServiceManager {
 		
 		pullProfessors = new PullProfessors(dbcs);
 		pullQuestions = new PullQuestions(dbcs);
+		pullSchoolHouses = new PullSchoolHouses(dbcs);
 		
 	}
 	
@@ -79,6 +82,10 @@ public class ServiceManager {
     
     public ArrayList<ArrayList<String>> pullProfessors(String fname, String lname) {
     	return pullProfessors.pullProfessors(fname, lname);
+    }
+    
+    public ArrayList<ArrayList<String>> pullSchoolHouses(String schoolName) {
+    	return pullSchoolHouses.pullSchoolHouses(schoolName);
     }
     
     public boolean login(String username, String password) {
