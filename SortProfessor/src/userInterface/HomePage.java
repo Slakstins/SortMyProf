@@ -168,6 +168,7 @@ public class HomePage extends Page {
 		//Establish cool components and listeners
         CoolButton searchProfsButton = new CoolButton("SearchProfs", 200, 300);
         CoolButton addRatingButton = new CoolButton("RateProf", 200, 340);
+        CoolButton importButton = new CoolButton("ImportData", 100, 500);
         
         
         CoolLabel labelProfName = new CoolLabel("ProfName:", 100, 160);
@@ -190,6 +191,15 @@ public class HomePage extends Page {
         header.add("House");
 
         JTable table = pageLoader.addTable(header, panel, 450, 100, 600, 400);
+        
+        importButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				serviceManager.importData();
+			}
+        	
+        });
         
         addRatingButton.addActionListener(new ActionListener() {
 
@@ -243,6 +253,9 @@ public class HomePage extends Page {
 		
 		//Add components to a Cool panel
         this.addHomepageBase(panel);
+        if (serviceManager.getUser().equals("Admin")) {
+        	panel.add(importButton);
+        }
         panel.add(addRatingButton);
         panel.add(searchProfsButton);
         panel.add(labelProfName);

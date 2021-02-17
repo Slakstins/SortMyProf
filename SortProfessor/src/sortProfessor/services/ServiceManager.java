@@ -24,6 +24,7 @@ public class ServiceManager {
 	private PullQuestions pullQuestions;
 	private PullSchoolHouses pullSchoolHouses;
 	private String currentUsername;
+	private DataImporter dataImporter;
 	
 	public ServiceManager(DatabaseConnectionService dbcs) {
 		this.dbcs = dbcs;
@@ -45,6 +46,14 @@ public class ServiceManager {
 		pullProfessors = new PullProfessors(dbcs);
 		pullQuestions = new PullQuestions(dbcs);
 		pullSchoolHouses = new PullSchoolHouses(dbcs);
+		dataImporter = new DataImporter(this);
+
+		
+	}
+	
+	//could make this take the filename, but formatting must be correct for excel file
+	public void importData() {
+		dataImporter.importAllData();
 		
 	}
 	
