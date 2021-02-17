@@ -27,7 +27,6 @@ public class DataImporter {
 		 for (int i = 0; i < data.size(); i++) { //loop across the rows
 			 ArrayList<String> rowData = data.get(i);
 			 String username = rowData.get(0);
-			 System.out.println(username);
 			 String fName = rowData.get(1);
 			 String lName = rowData.get(2);
 			 String password = rowData.get(3);
@@ -36,9 +35,62 @@ public class DataImporter {
 				 System.out.println("failed to add student with username " + username);
 			 }
 		 }
-		
+		 data = importSheetData(1);
+		 for (int i = 0; i < data.size(); i++) { //loop across the rows
+			 ArrayList<String> rowData = data.get(i);
+			 String schoolName = rowData.get(0);
+			 success = serviceManager.addSchool(schoolName);
+			 if (!success) {
+				 System.out.println("failed to add school with name " + schoolName);
+			 }
+		 }	
+		 data = importSheetData(2);
+		 for (int i = 0; i < data.size(); i++) { //loop across the rows
+			 ArrayList<String> rowData = data.get(i);
+			 String firstName = rowData.get(0);
+			 String lastName = rowData.get(1);
+			 String schoolName = rowData.get(2);
+			 success = serviceManager.addProfessor(firstName, lastName, schoolName); //needs to be schoolID
+			 if (!success) {
+				 System.out.println("failed to add prof with name " + firstName + " " + lastName);
+			 }
+		 }	
+		 data = importSheetData(3);
+		 for (int i = 0; i < data.size(); i++) { //loop across the rows
+			 ArrayList<String> rowData = data.get(i);
+			 String className = rowData.get(0);
+			 String profFName = rowData.get(1);
+			 String profLName = rowData.get(2);
+			 String id = getProfByID(profFName, profLName);
+			 success = serviceManager.addClass(className, id); //needs to be schoolID
+			 if (!success) {
+				 System.out.println("failed to add class " + className +" for " + profFName + " " + profLName);
+			 }
+		 }	
+
 	}
 	
+	//ID is for the first prof with the given name. For the sake of data import, this is fine so long as there are not 
+	//multiple profs with the same name.
+	private String getProfByID(String profFName, String profLName) {
+		ArrayList<ArrayList<String>> profs = serviceManager.pullProfessors(profFName, profLName);
+		if (profs.size() > 0) {
+			if (profs.size() > 1) {
+				System.out.println("multiple profs that could be added for given class. Adding oldest prof in database");
+				
+			}
+			ArrayList<String> prof1 = profs.get(0);
+			if (prof1.size() > 0) {
+				System.out.println("prof ID is " + prof1.get(0));
+				return prof1.get(0);
+			}
+		}
+		System.out.println("prof not found: " + profFName + " " + profLName);
+		return null;
+
+	}
+
+
 	public ArrayList<ArrayList<String>> importSheetData(int sheetNum) {
 
 		FileInputStream fis = null;
