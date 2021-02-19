@@ -71,7 +71,7 @@ public class SubmitSurvey extends DBAddService{
 	@Override
 	public void displaySuccess() {
 		// TODO Auto-generated method stub
-		JOptionPane.showMessageDialog(null, "Professor Added");
+		JOptionPane.showMessageDialog(null, "Survey added");
 		
 	}
 
