@@ -23,7 +23,6 @@ import userInterface.JCool.CoolTextField;
 public class HomePage extends Page {
 	private JPanel cards;
 	private JTabbedPane tabs;
-	private boolean tabsInitialized = false;
 
 	
 
