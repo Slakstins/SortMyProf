@@ -59,7 +59,7 @@ public class HomePage extends Page {
         addProfButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (serviceManager.addProfessor(tfProfFName.getText(), tfProfLName.getText(), tfSchoolName.getText())) {
+				if (serviceManager.addProfessor(true, tfProfFName.getText(), tfProfLName.getText(), tfSchoolName.getText())) {
 					System.out.println("Added professor: " + tfProfFName.getText() + " " +
 				 tfProfLName.getText());
 				}
@@ -132,7 +132,7 @@ public class HomePage extends Page {
 				TableModel model = (TableModel)table.getModel();
 				String profIDString = (String) model.getValueAtByColumnString(table.getSelectedRow(), "ID");
 
-				if (serviceManager.addClass(tfClassName.getText(), profIDString)){
+				if (serviceManager.addClass(true, tfClassName.getText(), profIDString)){
 					System.out.println("Added Class: " + tfClassName.getText() + " for prof with ID: " + profIDString);
 				}
 				else {
@@ -351,7 +351,7 @@ public class HomePage extends Page {
         addSchoolButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (serviceManager.addSchool(tfSchoolName.getText())){
+				if (serviceManager.addSchool(true, tfSchoolName.getText())){
 					System.out.println("Added School: " + tfSchoolName.getText());
 				}
 				else {

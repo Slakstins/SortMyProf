@@ -27,7 +27,7 @@ public class SubmitSurvey extends DBAddService{
 			stmt.setString(4, houseName);
 			stmt.setString(5, Integer.toString(score));
 			stmt.setString(6, comment);
-			boolean output = super.finalizeAddStmt(stmt);
+			boolean output = super.finalizeAddStmt(true, stmt);
 			return output;
 	
 			

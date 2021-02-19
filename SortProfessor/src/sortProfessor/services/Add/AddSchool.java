@@ -17,11 +17,11 @@ public class AddSchool extends DBAddService{
 		stmt = super.generateCallableStatement(queryProc);
 	}
 	
-	public boolean addSchool(String schoolName){
+	public boolean addSchool(boolean displayOutput,String schoolName){
 		try {
 			stmt.registerOutParameter(1, Types.INTEGER);
 			stmt.setString(2, schoolName);
-			return super.finalizeAddStmt(stmt);
+			return super.finalizeAddStmt(displayOutput, stmt);
 	
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

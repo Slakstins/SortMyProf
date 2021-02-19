@@ -22,7 +22,7 @@ public abstract class DBAddService extends DBService{
 	 * execute the statement and handle the error
 	 * OVERRIDE THIS FOR THOSE THAT RETURN TABLES
 	 */
-	public boolean finalizeAddStmt(CallableStatement stmt) throws SQLException {
+	public boolean finalizeAddStmt(boolean displaySuccess, CallableStatement stmt) throws SQLException {
 			stmt.execute();
 			int code = stmt.getInt(1);
 			if (code != 0) {
@@ -30,7 +30,10 @@ public abstract class DBAddService extends DBService{
 				handleErrorCode(code);
 				return false;
 			} else {
-				displaySuccess();
+				if (displaySuccess) {
+					
+					displaySuccess();
+				}
 				return true;
 			}
 	}

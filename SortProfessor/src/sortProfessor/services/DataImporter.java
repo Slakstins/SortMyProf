@@ -35,7 +35,7 @@ public class DataImporter {
 			 String fName = rowData.get(1);
 			 String lName = rowData.get(2);
 			 String password = rowData.get(3);
-			 success = serviceManager.register(username, password, fName, lName);
+			 success = serviceManager.register(false, username, password, fName, lName);
 			 if (!success) {
 				 System.out.println("failed to add student with username " + username);
 			 }
@@ -44,7 +44,7 @@ public class DataImporter {
 		 for (int i = 0; i < data.size(); i++) { //loop across the rows
 			 ArrayList<String> rowData = data.get(i);
 			 String schoolName = rowData.get(0);
-			 success = serviceManager.addSchool(schoolName);
+			 success = serviceManager.addSchool(false, schoolName);
 			 if (!success) {
 				 System.out.println("failed to add school with name " + schoolName);
 			 }
@@ -55,7 +55,7 @@ public class DataImporter {
 			 String firstName = rowData.get(0);
 			 String lastName = rowData.get(1);
 			 String schoolName = rowData.get(2);
-			 success = serviceManager.addProfessor(firstName, lastName, schoolName); //needs to be schoolID
+			 success = serviceManager.addProfessor(false, firstName, lastName, schoolName); //needs to be schoolID
 			 if (!success) {
 				 System.out.println("failed to add prof with name " + firstName + " " + lastName);
 			 }
@@ -67,7 +67,7 @@ public class DataImporter {
 			 String profFName = rowData.get(1);
 			 String profLName = rowData.get(2);
 			 String id = getProfByID(profFName, profLName);
-			 success = serviceManager.addClass(className, id); //needs to be schoolID
+			 success = serviceManager.addClass(false, className, id); //needs to be schoolID
 			 if (!success) {
 				 System.out.println("failed to add class " + className +" for " + profFName + " " + profLName);
 			 }

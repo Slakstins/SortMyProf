@@ -75,8 +75,8 @@ public class ServiceManager {
 		return pullProfSurveys.pullProfSurveys(profID);
 	}
 
-    public boolean addSchool(String schoolName) {
-    	return addSchool.addSchool(schoolName);
+    public boolean addSchool(boolean displayOutput, String schoolName) {
+    	return addSchool.addSchool(displayOutput, schoolName);
     }
     
     public boolean submitSurvey(String profID, String studentUsername, String houseName, int score, String comment) {
@@ -84,12 +84,12 @@ public class ServiceManager {
     	
     }
 
-    public boolean addClass(String className, String profID) {
-    	return addClass.addClass(className, profID);
+    public boolean addClass(boolean displayOutput, String className, String profID) {
+    	return addClass.addClass(displayOutput, className, profID);
     }
     
-    public boolean addProfessor(String fname, String lname, String schoolID) {
-    	return addProfessor.addProfessor(fname, lname, schoolID);
+    public boolean addProfessor(boolean displayOutput, String fname, String lname, String schoolID) {
+    	return addProfessor.addProfessor(displayOutput, fname, lname, schoolID);
     }
     
     public ArrayList<ArrayList<String>> pullProfessors(String fname, String lname) {
@@ -108,8 +108,8 @@ public class ServiceManager {
     	return userService.login(username, password);
     }
     
-    public boolean register(String username, String password, String firstName, String lastName) {
-    	return userService.register(username, password, firstName, lastName);
+    public boolean register(boolean displayOutput, String username, String password, String firstName, String lastName) {
+    	return userService.register(displayOutput, username, password, firstName, lastName);
     }
     
     public ArrayList<ArrayList<String>> pullQuestions() {

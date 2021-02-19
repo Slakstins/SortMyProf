@@ -55,7 +55,7 @@ public class RegisterPage extends Page {
 			public void actionPerformed(ActionEvent e) {
 				char[] passwordArray = tfPassword.getPassword();
 				String passwordString = new String(passwordArray);
-				if (serviceManager.register(tfUsername.getText(), passwordString, tfFName.getText(), tfLName.getText())) {
+				if (serviceManager.register(true, tfUsername.getText(), passwordString, tfFName.getText(), tfLName.getText())) {
 					System.out.println("registered " + tfFName.getText() + " " + tfLName.getText() + " as "+ tfUsername.getText());
 					tfPassword.setText("");
 					// TAKE THE USER TO A PAGE TO FILL OUT MORE REGISTRATION INFO

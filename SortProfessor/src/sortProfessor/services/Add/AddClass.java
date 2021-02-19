@@ -20,13 +20,13 @@ public class AddClass extends DBAddService{
 		stmt = super.generateCallableStatement(queryProc);
 	}
 	
-	public boolean addClass(String className, String ID){
+	public boolean addClass(boolean displayOutput, String className, String ID){
 		try {
 			stmt.registerOutParameter(1, Types.INTEGER);
 			stmt.setString(2, className);
 			stmt.setString(3, ID);
 
-			return super.finalizeAddStmt(stmt);
+			return super.finalizeAddStmt(displayOutput, stmt);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			return false;

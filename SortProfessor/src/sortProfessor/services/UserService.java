@@ -71,7 +71,7 @@ public class UserService {
 
 	}
 
-	public boolean register(String username, String password, String firstName, String lastName) {
+	public boolean register(boolean displayOutput,String username, String password, String firstName, String lastName) {
 		//TODO: Task 6
 		byte[] salt = getNewSalt();
 		String hashed = hashPassword(salt, password);

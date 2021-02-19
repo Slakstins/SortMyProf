@@ -18,13 +18,13 @@ public class AddProfessor extends DBAddService{
 		stmt = super.generateCallableStatement(queryProc);
 	}
 	
-	public boolean addProfessor(String firstName, String lastName, String schoolName){
+	public boolean addProfessor(boolean displayOutput,String firstName, String lastName, String schoolName){
 		try {
 			stmt.registerOutParameter(1, Types.INTEGER);
 			stmt.setString(2, firstName);
 			stmt.setString(3, lastName);
 			stmt.setString(4, schoolName);
-			boolean output = super.finalizeAddStmt(stmt);
+			boolean output = super.finalizeAddStmt(displayOutput, stmt);
 			return output;
 	
 			
