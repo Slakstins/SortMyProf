@@ -253,6 +253,7 @@ public class HomePage extends Page {
 		//Add components to a Cool panel
         this.addHomepageBase(panel);
         if (serviceManager.getUser().equals("Admin")) {
+        	// better way of checking if it's the admin??
         	panel.add(importButton);
         }
         panel.add(addRatingButton);

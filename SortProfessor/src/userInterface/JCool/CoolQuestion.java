@@ -61,27 +61,29 @@ public class CoolQuestion extends Panel {
 	    	 randomized.remove(0);
 	     }
 
-	     this.add(option1);
-	     this.add(option2);
-	     this.add(option3);
-	     this.add(option4);
+
 	     this.add(emptyLabel);
 	}
 	
+	//overcomplicated unncessary algorithm to scramble orders :)
 	public ArrayList<Integer> generateOrder(int numAnswers) {
 		ArrayList<Integer> randomized = new ArrayList<Integer>();
-
 		ArrayList<Integer> toGet = new ArrayList<Integer>();
 		for (int i = 0; i < numAnswers; i++) {
 			toGet.add(i);
 		}
 		while(toGet.size() > 0) {
 			int val = (int) (Math.random() * toGet.size()); //val is a number between 0 and size
-			toGet.remove(val);
-			randomized.add(val);
+			int removed = toGet.get(val);
+			randomized.add(removed);
+			for (int i = 0; i < toGet.size(); i++) {
+				if (toGet.get(i) == removed) {
+					toGet.remove(i);
+					break;
+				}
+			}
 		}
 		return randomized;
-		
 	}
 	
 	/**
