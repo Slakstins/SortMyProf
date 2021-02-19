@@ -24,8 +24,6 @@ public class HomePage extends Page {
 	private JPanel cards;
 	private JTabbedPane tabs;
 
-	
-
 	public HomePage(JFrame frame, ServiceManager serviceManager, PageLoader pageLoader, JPanel cards) {
 		super(frame, serviceManager, pageLoader);
 		this.cards = cards;
@@ -40,21 +38,17 @@ public class HomePage extends Page {
 		createAddProfTab();
 		createAddClassTab(); // probably going to merge this one into rate prof tab
 		createAddSchoolTab();
-		
 	}
 	
 	
 	private void createAddProfTab(){
-		
         CoolLabel labelFName = new CoolLabel("FirstName:", 100, 100);
         CoolLabel labelLName = new CoolLabel("LastName:", 100, 150);
         CoolLabel schoolName = new CoolLabel("SchoolName:", 100, 200);
-
         
         CoolTextField tfProfFName = new CoolTextField(null, 200, 100); 
         CoolTextField tfProfLName = new CoolTextField(null, 200, 150);
         CoolTextField tfSchoolName = new CoolTextField(null, 200, 200);
-        
 
         CoolButton addProfButton = new CoolButton("AddProf", 200, 300);
         
@@ -176,7 +170,7 @@ public class HomePage extends Page {
         
         CoolTextField tfProfFname = new CoolTextField(null, 200, 200);
         CoolTextField tfProfLname = new CoolTextField(null, 200, 250);
-        CoolButton viewProfButton = new CoolButton("ViewProf", 300, 300);
+        CoolButton viewProfButton = new CoolButton("ViewSurveys", 300, 300);
 
         CoolPanel panel = new CoolPanel();
         
