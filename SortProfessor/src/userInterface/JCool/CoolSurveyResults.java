@@ -20,7 +20,7 @@ public class CoolSurveyResults extends JPanel {
 		super.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 	    JLabel emptyLabel = new JLabel("\n", SwingConstants.LEFT);
 		JLabel houseName = new JLabel("House: " + surveyResults.get(0));
-		JLabel score = new JLabel("Average rating: " + surveyResults.get(1));
+		JLabel score = new JLabel("Rating: " + surveyResults.get(1));
 		JLabel timeStamp = new JLabel("Date of Sorting: " + surveyResults.get(2).substring(0, 10)); //10 to truncate timestamp
 		JTextArea comment = new JTextArea(surveyResults.get(3));
 		comment.setEditable(false);
