@@ -84,7 +84,7 @@ public class HomePage extends Page {
         panel.add(labelLName);
         panel.add(tfProfFName);
         panel.add(tfProfLName);
-        tabs.add(panel, "addProf");	
+        tabs.add(panel, "Add Professor");	
 	}
 	
 	
@@ -158,7 +158,7 @@ public class HomePage extends Page {
         panel.add(labelProfFName);
         panel.add(labelProfLName);
         //Add the panel to a new homePage tab
-        tabs.add(panel, "addClass");	
+        tabs.add(panel, "Add Class");	
 	}
 	
 	
@@ -264,7 +264,7 @@ public class HomePage extends Page {
         panel.add(tfProfLname);
         panel.add(viewProfButton);
         //Add the panel to a new homePage tab
-        tabs.add(panel, "searchProfs");	
+        tabs.add(panel, "Search Professors");	
 	}
 	
 	private void createViewHousesTab(){
@@ -328,7 +328,7 @@ public class HomePage extends Page {
         panel.add(tfSchoolName);
         panel.add(addSchoolButton);
         //Add the panel to a new homePage tab
-        tabs.add(panel, "addSchool");	
+        tabs.add(panel, "Add School");	
 	}
 
 	public void addHomepageBase(CoolPanel panel) {
