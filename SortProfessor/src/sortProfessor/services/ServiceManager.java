@@ -46,7 +46,7 @@ public class ServiceManager {
 		pullProfessors = new PullProfessors(dbcs);
 		pullQuestions = new PullQuestions(dbcs);
 		pullSchoolHouses = new PullSchoolHouses(dbcs);
-		dataImporter = new DataImporter(this);
+		dataImporter = new DataImporter(dbcs, this);
 
 		
 	}

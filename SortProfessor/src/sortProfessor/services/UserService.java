@@ -101,7 +101,6 @@ public class UserService {
 			
 			
 		} catch (SQLException e) {
-			e.printStackTrace();
 			JOptionPane.showMessageDialog(null, "That username is already taken");
 			// TODO Auto-generated catch block
 			return false;

@@ -14,13 +14,17 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class DataImporter {
 	private ServiceManager serviceManager;
+	private DatabaseConnectionService dbcs;
 	
-	public DataImporter(ServiceManager serviceManager) {
+	public DataImporter(DatabaseConnectionService dbcs, ServiceManager serviceManager) {
 		this.serviceManager = serviceManager;
+		this.dbcs = dbcs;
 	}
 	
 	
 	public void importAllData() {
+		
+		 
 		 
 		 boolean success = true;
 		 ArrayList<ArrayList<String>> data = null;
@@ -68,6 +72,9 @@ public class DataImporter {
 				 System.out.println("failed to add class " + className +" for " + profFName + " " + profLName);
 			 }
 		 }	
+
+		 GenerateQuestions generateQuestions = new GenerateQuestions(dbcs);
+		 generateQuestions.generateQuestions();
 
 	}
 	
