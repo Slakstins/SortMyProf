@@ -24,7 +24,7 @@ public class DataImporter {
 	
 	public void importAllData() {
 		
-		 
+		 String origiranlUsername = serviceManager.getUser();
 		 
 		 boolean success = true;
 		 ArrayList<ArrayList<String>> data = null;
@@ -75,6 +75,7 @@ public class DataImporter {
 
 		 GenerateQuestions generateQuestions = new GenerateQuestions(dbcs);
 		 generateQuestions.generateQuestions();
+		 serviceManager.setUser(origiranlUsername);
 
 	}
 	
