@@ -49,7 +49,8 @@ public class ProfDataPage extends Page {
 	
 	public void loadDataPage(ArrayList<ArrayList<String>> surveysData) {
 		if (surveysData != null && surveysData.get(0).size() > 0) {
-		surveyDataPanel.setPreferredSize(new Dimension(1000, surveysData.size() * 150)); //set the size of the scrollable page based on the number of surveys retrieved
+		surveyDataPanel.setPreferredSize(new Dimension(1000, surveysData.size() * 450)); //set the size of the scrollable page based on the number of surveys retrieved
+		//note: this page will always be longer than it needs to be. Unsure exactly how many pixels each survey takes up
 			for (int i = 0; i < surveysData.get(0).size(); i++) {
 					ArrayList<String> surveyData = new ArrayList<String>();
 					surveyData.add(surveysData.get(0).get(i));

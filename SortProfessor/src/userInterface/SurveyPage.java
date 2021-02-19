@@ -50,7 +50,7 @@ public class SurveyPage extends Page {
 		surveyPanel = new CoolPanel();
 		surveyPanel.setLayout(new BoxLayout(surveyPanel, BoxLayout.Y_AXIS));
 		surveyPanel.add(Box.createRigidArea(new Dimension(40, 20)));	
-		surveyPanel.setPreferredSize(new Dimension(1000, 2000));
+		surveyPanel.setPreferredSize(new Dimension(1000, 1500));
         surveyPanel.setVisible(true);
         //ADD SCORE DROP DOWN
         

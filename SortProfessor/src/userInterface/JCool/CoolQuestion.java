@@ -25,15 +25,12 @@ public class CoolQuestion extends Panel {
 	     JRadioButton  option4 = new JRadioButton();
 	     JLabel emptyLabel = new JLabel("\n", SwingConstants.LEFT);
 	     
-	     
-	     
 	     option1.setText(answers.get(0));
 	     option2.setText(answers.get(1));
 	     option3.setText(answers.get(2));
 	     option4.setText(answers.get(3));
 	     
 	     JLabel questionText = new JLabel(question, SwingConstants.LEFT);
-	     
 	     
 	     buttonGroup.add(option1);
 	     buttonGroup.add(option2);
@@ -44,11 +41,47 @@ public class CoolQuestion extends Panel {
 	     buttons.add(option3);
 	     buttons.add(option4);
 	     this.add(questionText);
+	     //randomize order
+
+	     ArrayList<Integer> randomized = generateOrder(4);
+	     while(randomized.size() > 0) {
+	    	 switch(randomized.get(0)) {
+	    	 case 0:
+	    		 this.add(option1);
+	    		 break;
+	    	 case 1:
+	    		 this.add(option2);
+	    		 break;
+	    	 case 2:
+	    		 this.add(option3);
+	    		 break;	
+	    	 case 3:
+	    		 this.add(option4);
+	    		 break;}
+	    	 randomized.remove(0);
+	     }
+
 	     this.add(option1);
 	     this.add(option2);
 	     this.add(option3);
 	     this.add(option4);
 	     this.add(emptyLabel);
+	}
+	
+	public ArrayList<Integer> generateOrder(int numAnswers) {
+		ArrayList<Integer> randomized = new ArrayList<Integer>();
+
+		ArrayList<Integer> toGet = new ArrayList<Integer>();
+		for (int i = 0; i < numAnswers; i++) {
+			toGet.add(i);
+		}
+		while(toGet.size() > 0) {
+			int val = (int) (Math.random() * toGet.size()); //val is a number between 0 and size
+			toGet.remove(val);
+			randomized.add(val);
+		}
+		return randomized;
+		
 	}
 	
 	/**

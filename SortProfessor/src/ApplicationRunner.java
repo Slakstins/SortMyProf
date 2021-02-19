@@ -30,9 +30,7 @@ public class ApplicationRunner {
 		
 		
 		PageLoader pageLoader = new PageLoader(serviceManager);
-//		pageLoader.openHomePage();
 		pageLoader.openLoginPage();
-		//pageLoader.openSurveyPage("111");
 	}
 	
 	public void setDBProperties() {

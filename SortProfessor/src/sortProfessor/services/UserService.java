@@ -31,10 +31,6 @@ public class UserService {
 		this.dbService = dbService;
 	}
 
-	public boolean useApplicationLogins() {
-		return true;
-	}
-
 	public boolean login(String username, String password) {
 		int code = 0;
 		CallableStatement stmt = null;
@@ -105,6 +101,7 @@ public class UserService {
 			
 			
 		} catch (SQLException e) {
+			e.printStackTrace();
 			JOptionPane.showMessageDialog(null, "That username is already taken");
 			// TODO Auto-generated catch block
 			return false;

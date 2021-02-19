@@ -43,7 +43,7 @@ public class PageLoader {
 	    cards = new JPanel(new CardLayout());
 	    cards.setBounds(0, 0, 1080, 720);
 	    frame.add(cards);
-		initializePages(frame, serviceManager);
+		initializePages(frame);
 	}
 	
 	/*
@@ -66,7 +66,7 @@ public class PageLoader {
 	
 	
 	//add pages here
-	private void initializePages(JFrame frame, ServiceManager serviceManager) {
+	private void initializePages(JFrame frame) {
 		profDataPage = new ProfDataPage(frame, serviceManager, this, cards);
 		loginPage = new LoginPage(frame, serviceManager, this, cards);
 		homePage = new HomePage(frame, serviceManager, this, cards);
