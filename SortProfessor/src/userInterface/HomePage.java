@@ -37,6 +37,7 @@ public class HomePage extends Page {
 		//remember to update these
 		createViewProfsTab();
 		createViewHousesTab();
+		createViewByClassTab();
 		createAddProfTab();
 		createAddClassTab(); // probably going to merge this one into rate prof tab
 		createAddSchoolTab();
@@ -266,6 +267,49 @@ public class HomePage extends Page {
         panel.add(viewProfButton);
         //Add the panel to a new homePage tab
         tabs.add(panel, "Search Professors");	
+	}
+	
+	private void createViewByClassTab(){
+		//Establish cool components and listeners
+        CoolButton searchProfsButton = new CoolButton("SearchProfs", 200, 300);
+        
+        CoolLabel labelSchoolName = new CoolLabel("School name:", 100, 200);
+        CoolLabel labelClassName = new CoolLabel("Class name:", 100, 250);
+        
+        CoolTextField tfSchoolName = new CoolTextField(null, 200, 200);
+        CoolTextField tfClassName = new CoolTextField(null, 200, 250);
+
+        CoolPanel panel = new CoolPanel();
+        
+        ArrayList<String> header = new ArrayList<String>();
+        
+        header.add("ID");
+        header.add("FirstName");
+        header.add("LastName");
+        header.add("AvgRating");
+
+        JTable table = pageLoader.addTable(header, panel, 450, 100, 600, 400);
+        
+        searchProfsButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ArrayList<ArrayList<String>> results = serviceManager.pullProfByClass(tfSchoolName.getText(), tfClassName.getText());
+				TableModel model =(TableModel) table.getModel();
+				model.setData(results);
+			}
+        });	
+        
+		
+		//Add components to a Cool panel
+        this.addHomepageBase(panel);
+        
+        panel.add(searchProfsButton);
+        panel.add(labelSchoolName);
+        panel.add(labelClassName);
+        panel.add(tfSchoolName);
+        panel.add(tfClassName);
+        //Add the panel to a new homePage tab
+        tabs.add(panel, "Search By School/Class");	
 	}
 	
 	private void createViewHousesTab(){
