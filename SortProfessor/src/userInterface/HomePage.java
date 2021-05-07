@@ -59,6 +59,7 @@ public class HomePage extends Page {
         addProfButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				String text = tfProfFName.getText();
 				if (serviceManager.addProfessor(true, tfProfFName.getText(), tfProfLName.getText(), tfSchoolName.getText())) {
 					System.out.println("Added professor: " + tfProfFName.getText() + " " +
 				 tfProfLName.getText());

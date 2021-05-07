@@ -32,9 +32,6 @@ public class CoolSurveyResults extends JPanel {
 		this.setAlignmentX(LEFT_ALIGNMENT);
 		this.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED, Color.gray, Color.DARK_GRAY));
 		
-		
-		
-		
 		JLabel username = new JLabel("Sorted by: " + surveyResults.get(4));
 		username.setAlignmentX(LEFT_ALIGNMENT);
 		houseName.setAlignmentX(LEFT_ALIGNMENT);
